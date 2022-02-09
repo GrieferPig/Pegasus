@@ -51,7 +51,7 @@ Feel free to post issues / pull requests if you find something which can improve
  - Alicorn Launcher, for *inspiration*
 
 ***
-Licensed under Mozilla Public License Version 2.0. All rights reserved.
+Licensed under Mozilla Public License Version 2.0. All rights reserved.  
 "Minecraft", "我的世界" and its logo are affiliates of Mojang AB.  
 "My Little Pony: Friendship is Magic" is affiliated with Hasbro.  
 Not Related to Mojang AB, Hasbro and other organizations.  
