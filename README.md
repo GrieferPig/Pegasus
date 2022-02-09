@@ -41,7 +41,7 @@ Feel free to post issues / pull requests if you find something which can improve
 ***
 
 ### Docs. Yes it's boring.
-- [How to build Pegasus Launcher](github.com/GrieferPig/Pegasus/)
+- [How to build Pegasus Launcher](/blob/master/doc/build.md)
 
 ***
 
