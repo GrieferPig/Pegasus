@@ -1,1 +1,4 @@
-//dummy for now
+.title{
+    color: white;
+    -webkit-app-region: drag;
+}

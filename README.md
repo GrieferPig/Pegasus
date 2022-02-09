@@ -1,5 +1,5 @@
 # <center>Pegasus Launcher</center>
-#### <center>Featherweight Minecraft launcher, made using Electron.</center>
+#### <center>Featherweight, no, Heavyweight Minecraft launcher, made using Electron.</center>
 ***
 ## Why this?
 Pegasus Launcher aims for the ultimate compactness (in functionality) and usability, which means, it abandons all the redundant, fancy functionality, while keeping the necessary bits to start Minecraft.  
@@ -8,6 +8,8 @@ And obviously, you don't need an AI assistant to launch Minecraft if you can do 
 
 ## Why electron?
 IDK really. Electron has literally no advantages except it's JVM-independent.
+
+For how bad is it, imagine a 250MiB Hello World app.
 
 ## Well, how usable can it be?
 Select a version, click Launch. That’s it. I’m sure you’ll learn in *10 seconds flat*.
