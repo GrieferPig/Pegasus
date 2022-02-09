@@ -1,5 +1,5 @@
 # <center>Pegasus Launcher</center>
-#### <center>Featherweight, no, Heavyweight Minecraft launcher, made using Electron.</center>
+#### <center>Featherweight, no, Heavyweight, newbie-friendly Minecraft launcher.</center>
 ***
 ## Why this?
 Pegasus Launcher aims for the ultimate compactness (in functionality) and usability, which means, it abandons all the redundant, fancy functionality, while keeping the necessary bits to start Minecraft.  
