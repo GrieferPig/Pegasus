@@ -41,7 +41,7 @@ Feel free to post issues / pull requests if you find something which can improve
 ***
 
 ### Docs. Yes it's boring.
-- [How to build Pegasus Launcher](/blob/master/doc/build.md)
+- [How to build Pegasus Launcher](doc/build.md)
 
 ***
 
@@ -52,3 +52,7 @@ Feel free to post issues / pull requests if you find something which can improve
 
 ***
 Licensed under Mozilla Public License Version 2.0. All rights reserved.
+"Minecraft", "我的世界" and its logo are affiliates of Mojang AB.  
+"My Little Pony: Friendship is Magic" is affiliated with Hasbro.  
+Not Related to Mojang AB, Hasbro and other organizations.  
+Other trademarks belong to their owner.
