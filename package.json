@@ -1,0 +1,26 @@
+{
+  "name": "pegasus-launcher",
+  "version": "0.6.1",
+  "description": "Featherweight Minecraft launcher, made using Electron.",
+  "author": "GrieferPig",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^17.0.0",
+    "electron-builder": "^22.14.13"
+  },
+  "dependencies": {
+    "vue-cli": "^2.9.6",
+    "yarn": "^1.22.17"
+  },
+  "build": {
+    "appId": "xyz.grieferpig",
+    "mac": {
+      "category": "xyz.grieferpig.pegasus.launcher"
+    }
+  }
+}

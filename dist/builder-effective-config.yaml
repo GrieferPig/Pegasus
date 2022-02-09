@@ -1,0 +1,8 @@
+directories:
+  output: dist
+  buildResources: build
+appId: xyz.grieferpig
+mac:
+  category: xyz.grieferpig.pegasus.launcher
+files: []
+electronVersion: 17.0.0
