@@ -2,12 +2,27 @@
 #### <center>Featherweight Minecraft launcher, made using Electron.</center>
 ***
 ## Why this?
-Pegasus Launcher aims for the ultimate compactness and usability, which means, it abandons all the redundant, fancy functionality, while keeping the necessary bits to start Minecraft.  
+Pegasus Launcher aims for the ultimate compactness (in functionality) and usability, which means, it abandons all the redundant, fancy functionality, while keeping the necessary bits to start Minecraft.  
+
+And obviously, you don't need an AI assistant to launch Minecraft if you can do it within one click.
+
+## Why electron?
+IDK really. Electron has literally no advantages except it's JVM-independent.
 
 ## Well, how usable can it be?
 Select a version, click Launch. That’s it. I’m sure you’ll learn in *10 seconds flat*.
 
 No manual configuration is needed, as the launcher has done for you. *Although* you may want to edit that in the configuration panel.
+
+## Features?
+- Download and launch Minecraft (obviously)
+- Multiple accounts support including Demo/Mojang/Microsoft/Authlib-inject accounts.
+- Fast (threaded) download.
+- Set up OpenJDK Runtime if no JRE detected
+- Advanced runtime configuration
+- Log recording
+- i18n support (for later)
+- Bugs. Lots of bugs.
 
 ## Forge/LiteLoader/Optifine Support?
 No.  
@@ -19,4 +34,21 @@ Okay, then bad news for you. Currently it’s a proof-of-concept. **Hopefully**,
     
 For alternatives(and the inspiration of this project), how about Andy-K-Sparklight’s [Alicorn Launcher](https://github.com/Andy-K-Sparklight/Alicorn).
 
+## Sounds cool! I'm in.
+Thanks! Others' contribution is definitely and extremely helpful for this project.  
+Feel free to post issues / pull requests if you find something which can improve.
+
 ***
+
+### Docs. Yes it's boring.
+- [How to build Pegasus Launcher](github.com/GrieferPig/Pegasus/)
+
+***
+
+###### *Special thanks to these amazing project. Without them, this project would **never** finish.*
+ - Electron.js
+ - Node.js
+ - Alicorn Launcher, for *inspiration*
+
+***
+Licensed under Mozilla Public License Version 2.0. All rights reserved.
