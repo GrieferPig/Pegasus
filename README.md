@@ -51,6 +51,7 @@ Feel free to post issues / pull requests if you find something which can improve
  - Electron.js
  - Node.js
  - FontAwesome
+ - Vue.js
  - Alicorn Launcher, for *inspiration*
 
 ***
