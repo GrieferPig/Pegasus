@@ -18,8 +18,9 @@ No manual configuration is needed, as the launcher has done for you. *Although* 
 
 ## Features?
 - Download and launch Minecraft (obviously)
-- Multiple accounts support including Demo/Mojang/Microsoft/Authlib-inject accounts.
-- Fast (threaded) download.
+- Multiple accounts support including Demo/Mojang/Microsoft/Authlib-inject accounts
+- Fast (threaded) download
+- Beautiful and clean UI according to Material Design
 - Set up OpenJDK Runtime if no JRE detected
 - Advanced runtime configuration
 - Log recording
