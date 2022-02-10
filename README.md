@@ -50,6 +50,7 @@ Feel free to post issues / pull requests if you find something which can improve
 ###### *Special thanks to these amazing project. Without them, this project would **never** finish.*
  - Electron.js
  - Node.js
+ - FontAwesome
  - Alicorn Launcher, for *inspiration*
 
 ***

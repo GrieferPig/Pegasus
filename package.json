@@ -10,11 +10,11 @@
     "postuninstall": "electron-builder install-app-deps",
     "start": "electron ."
   },
-  "main": "src/main.js",
+  "main": "src/js/main.js",
   "dependencies": {
-    "electron-packager": "^15.4.0"
+    "electron-packager": "^15.4.0",
+    "vue": "^3.2.30"
   },
-
   "devDependencies": {
     "electron": "^17.0.0",
     "electron-builder": "^22.14.13",

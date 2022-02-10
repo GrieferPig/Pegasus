@@ -8,13 +8,17 @@ function createWindow () {
     width: 350,
     height: 600,
     frame: false,
-    transparent: false
+    transparent: true,
+    resizable: false,
+    webPreferences: {experimentalFeatures: true}
   })
   mainWindow.loadFile('src/index.html')
-  ipcMain.on('handleClose', function(){
-    mainWindow.close()
-  });
+  mainWindow.webContents.openDevTools({mode:'detach'})
 }
+
+ipcMain.on('handleClose', function(){
+  app.close()
+});
 
 app.whenReady().then(() => {
   createWindow()
