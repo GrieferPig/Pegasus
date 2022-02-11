@@ -53,7 +53,7 @@ Feel free to post issues / pull requests if you find something which can improve
  - Node.js
  - FontAwesome
  - Vue.js
- - Vuetify.js
+ - Vuetify.js (although still in alpha stage)
  - Alicorn Launcher, for *inspiration*
 
 ***
