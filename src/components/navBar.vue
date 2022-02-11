@@ -14,8 +14,16 @@ export default {
   name: "navBar",
   props: {
     title: String
+  },methods: {
+    onMin(){
+      this.$el.ipcRenderer.send('window-min');
+    },
+    onClose(){
+      this.$el.ipcRenderer.send('window-close');
+    }
   }
 }
+
 </script>
 
 <style scoped>
@@ -23,12 +31,13 @@ export default {
   color: white;
   font-size: 20px;
   position: fixed;
-  top: 20px;
+  top: 22px;
   left: 60px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   right: 90px;
+  user-select:none;
 }
 
 .menu_icon{
@@ -48,7 +57,7 @@ export default {
 
 .close_icon{
   position:fixed;
-  top: 22px;
+  top: 23px;
   right: 20px;
   font-size: 22px;
   -webkit-app-region: no-drag;
@@ -63,8 +72,8 @@ export default {
 
 .min_icon{
   position:fixed;
-  top: 19px;
-  right: 50px;
+  top: 21px;
+  right: 55px;
   font-size: 16px;
   -webkit-app-region: no-drag;
 }
