@@ -15,14 +15,14 @@ async function createWindow() {
     height: 600,
     frame: false,
     transparent: true,
-    resizable: false,
+    resizable: true,
     webPreferences: {
       experimentalFeatures: true,
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
     }
   })
-
+  win.webContents.openDevTools({mode: "right"});
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
