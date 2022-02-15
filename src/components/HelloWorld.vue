@@ -1,6 +1,5 @@
 <template>
   <v-container>
-
   </v-container>
 </template>
 
@@ -10,3 +9,6 @@ export default {
   name: 'HelloWorld'
 }
 </script>
+<style>
+
+</style>

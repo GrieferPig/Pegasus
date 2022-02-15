@@ -14,8 +14,8 @@ async function createWindow() {
     width: 350,
     height: 600,
     frame: false,
-    transparent: true,
-    resizable: true,
+    transparent: false,
+    resizable: false,
     webPreferences: {
       experimentalFeatures: true,
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,

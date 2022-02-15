@@ -1,10 +1,18 @@
 <template>
   <div class="background">
   <v-app>
-    <v-main>
-      <v-app-bar>
+    <v-main class="overflow-hidden">
+      <v-app-bar  dense
+                  elevation="1"
+                  flat
+                  outlined>
+        <v-btn
+            depressed
+            icon
+        ><font-awesome-icon icon="bars" />
+        </v-btn>
         <v-app-bar-title>
-          <span>{{ appTitle }}</span>
+          <span class="appTitle"> {{ appTitle }} </span>
         </v-app-bar-title>
       </v-app-bar>
       <HelloWorld/>
@@ -23,23 +31,30 @@ export default {
     HelloWorld
   },
 
-  data: () => ({
-    return: {
-      appTitle: 'alr'
+  data() {
+    return {
+      appTitle: 'Title Placeholderdfdsfusdfdsffkudfsusdujksdfjkdsfjkdsfjk'
     }
-  }),
+  }
 }
+
 </script>
 
 <style>
-.background{
-  height: 600px;
-  width: 350px;
-  border-radius: 10px;
-  display: block;
+html::-webkit-scrollbar{
+  width:0px;/** hide scroolbar**/
 }
 
-#app{
+.appTitle{
+  display: block;
+  width: 230px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-app-region: drag;
+  padding-left: 0 !important;
+}
+
+.background{
   height: 600px;
   width: 350px;
   border-radius: 10px;
