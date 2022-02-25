@@ -14,8 +14,8 @@ async function createWindow() {
     width: 350,
     height: 600,
     frame: false,
-    transparent: false,
-    resizable: false,
+    transparent: true,
+    resizable: true,
     webPreferences: {
       experimentalFeatures: true,
       //@ts-ignore
