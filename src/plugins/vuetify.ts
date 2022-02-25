@@ -4,15 +4,14 @@ export const lightTheme: ThemeDefinition = {
     variables: {},
     dark: false,
     colors: {
-        background: '#FFFFFF',
-        surface: '#FFFFFF',
-        primary: '#6200EE',
-        'primary-darken-1': '#3700B3',
-        secondary: '#03DAC6',
-        'secondary-darken-1': '#018786',
-        error: '#B00020',
-        info: '#2196F3',
-        success: '#4CAF50',
-        warning: '#FB8C00',
+        background: '#ffffff',
+        surface: '#3749a3',
+        primary: '#03a9f4',
+        secondary: '#673ab7',
+        accent: '#2196f3',
+        error: '#e91e63',
+        warning: '#ff9800',
+        info: '#607d8b',
+        success: '#cddc39'
     }
 }
