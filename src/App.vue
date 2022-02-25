@@ -1,63 +1,27 @@
 <template>
-  <div class="background">
-  <v-app>
-    <v-main class="overflow-hidden">
-      <v-app-bar  dense
-                  elevation="1"
-                  flat
-                  outlined>
-        <v-btn
-            depressed
-            icon
-        ><font-awesome-icon icon="bars" />
-        </v-btn>
-        <v-app-bar-title>
-          <span class="appTitle"> {{ appTitle }} </span>
-        </v-app-bar-title>
-      </v-app-bar>
-      <HelloWorld/>
-    </v-main>
-  </v-app>
-  </div>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+import HelloWorld from './components/HelloWorld.vue';
 
-export default {
-  name: 'App',
-
+@Options({
   components: {
-    HelloWorld
+    HelloWorld,
   },
-
-  data() {
-    return {
-      appTitle: 'Title Placeholderdfdsfusdfdsffkudfsusdujksdfjkdsfjkdsfjk'
-    }
-  }
-}
-
+})
+export default class App extends Vue {}
 </script>
 
-<style>
-html::-webkit-scrollbar{
-  width:0px;/** hide scroolbar**/
-}
-
-.appTitle{
-  display: block;
-  width: 230px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  -webkit-app-region: drag;
-  padding-left: 0 !important;
-}
-
-.background{
-  height: 600px;
-  width: 350px;
-  border-radius: 10px;
-  display: block;
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>

@@ -18,6 +18,7 @@ async function createWindow() {
     resizable: false,
     webPreferences: {
       experimentalFeatures: true,
+      //@ts-ignore
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
     }
