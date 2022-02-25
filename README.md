@@ -1,3 +1,5 @@
+# CONGRATULATIONS TYPESCRIPT, YOU'VE JUST RUINED MY WHOLE DAY
+
 # <center>Pegasus Launcher</center>
 #### <center>Featherweight, no, Heavyweight, newbie-friendly Minecraft launcher.</center>
 ***
@@ -54,6 +56,7 @@ Feel free to post issues / pull requests if you find something which can improve
  - FontAwesome
  - Vue.js
  - Vuetify.js (although still in alpha stage)
+ - Typescript, for being the worst programming language I've ever dealt with
  - Alicorn Launcher, for *inspiration*
 
 ***
