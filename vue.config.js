@@ -1,12 +1,14 @@
 module.exports = {
   pluginOptions: {
-      vuetify: {
-          // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
-      },
-      resolve: {
-          extensions: ['.js', '.vue', '.json', '.ts'],
-          alias: {}
-      }
-
-  }
+    vuetify: {
+			// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
+		}
+  },
+    configureWebpack: {
+        module: {
+            rules: [
+                { test: /\.ts$/, use: 'ts-loader' }
+            ]
+        }
+    }
 }

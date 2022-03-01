@@ -1,10 +1,8 @@
-# CONGRATULATIONS TYPESCRIPT, YOU'VE JUST RUINED MY WHOLE DAY
-
 # <center>Pegasus Launcher</center>
 #### <center>Featherweight, no, Heavyweight, newbie-friendly Minecraft launcher.</center>
 ***
 ## Why this?
-Pegasus Launcher aims for the ultimate compactness (in functionality) and usability, which means, it abandons all the redundant, fancy functionality, while keeping the necessary bits to start Minecraft.  
+Pegasus Launcher aims for the ultimate compactness (in functionality) and usability, which means, it abandons all the redundant, fancy functionality, while keeping the necessary bits to start Minecraft.
 
 And obviously, you don't need an AI assistant to launch Minecraft if you can do it within one click.
 
@@ -30,13 +28,13 @@ No manual configuration is needed, as the launcher has done for you. *Although* 
 - Bugs. Lots of bugs.
 
 ## Forge/LiteLoader/Optifine Support?
-No.  
+No.
 
 Just kidding. Let’s talk about that later.
 
 ## Okay, sounds pretty good. Download link?
-Okay, then bad news for you. Currently it’s a proof-of-concept. **Hopefully**, this launcher can finish in a feaw month, but LOL I have no guarantee for this project.  
-    
+Okay, then bad news for you. Currently it’s a proof-of-concept. **Hopefully**, this launcher can finish in a feaw month, but LOL I have no guarantee for this project.
+
 For alternatives(and the inspiration of this project), how about Andy-K-Sparklight’s [Alicorn Launcher](https://github.com/Andy-K-Sparklight/Alicorn).
 
 ## Sounds cool! I'm in.
@@ -51,13 +49,13 @@ Feel free to post issues / pull requests if you find something which can improve
 ***
 
 ###### *Special thanks to these amazing project. Without them, this project would **never** finish.*
- - Electron.js
- - Node.js
- - FontAwesome
- - Vue.js
- - Vuetify.js (although still in alpha stage)
- - Typescript, for being the worst programming language I've ever dealt with
- - Alicorn Launcher, for *inspiration*
+- Electron.js
+- Node.js
+- FontAwesome
+- Vue.js
+- Vuetify.js (although still in alpha stage)
+- Typescript, for being the worst programming language I've ever dealt with
+- Alicorn Launcher, for *inspiration*
 
 ***
 Licensed under Mozilla Public License Version 2.0. All rights reserved.  
