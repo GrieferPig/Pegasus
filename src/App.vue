@@ -1,7 +1,7 @@
 <template>
   <div class="background">
     <v-app>
-      <v-main class="overflow-hidden">
+      <v-main>
         <v-app-bar dense
                     elevation="1"
                     outlined>
@@ -59,9 +59,5 @@ html::-webkit-scrollbar{
 body{ /** weird fix **/
   padding: 0;
   margin: 0;
-}
-
-.v-btn__overlay{
-  background: #00000033;
 }
 </style>
