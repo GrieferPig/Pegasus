@@ -20,7 +20,7 @@ async function createWindow() {
       //@ts-ignore
       nodeIntegration: true,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
-      preload: path.join(__dirname, '/../src/preload.js'),
+      preload: path.join(__dirname, '/../preload.js'),
       enableRemoteModule: true,
     }
   })
