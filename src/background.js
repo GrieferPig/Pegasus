@@ -1,14 +1,13 @@
 'use strict'
-
+//require('@electron/remote/main').initialize()
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
-
+import path from 'path'
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
-
+const win = null
 async function createWindow() {
   const win = new BrowserWindow({
     width: 350,
@@ -19,10 +18,13 @@ async function createWindow() {
     webPreferences: {
       experimentalFeatures: true,
       //@ts-ignore
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+      nodeIntegration: true,
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
+      preload: path.join(__dirname, '/../src/preload.js'),
+      enableRemoteModule: true,
     }
   })
+  //require("@electron/remote/main").enable(win.webContents)
   win.webContents.openDevTools({mode: "detach"});
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
@@ -34,15 +36,6 @@ async function createWindow() {
     win.loadURL('app://./index.html')
   }
 }
-
-// Quit when all windows are closed.
-app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
@@ -71,3 +64,10 @@ if (isDevelopment) {
     })
   }
 }
+app.on('window-all-closed', app.quit);
+
+const {ipcMain} = require('electron')
+ipcMain.on('close-app', (evt, arg) => {
+  //app.quit();
+  app.exit();//wtf why I cant use .quit()
+})

@@ -956,6 +956,11 @@
     "global-agent" "^3.0.0"
     "global-tunnel-ng" "^2.7.1"
 
+"@electron/remote@^2.0.5":
+  "integrity" "sha512-Ot8VsYCwAJ+9DgqRuYCiAobS8TVKvnXJMncR14/28ORso1iWFG0X6geyk3hc13N48Oc/WJnPYlYI3o7g5Ja2Qg=="
+  "resolved" "https://registry.npmmirror.com/@electron/remote/-/remote-2.0.5.tgz"
+  "version" "2.0.5"
+
 "@electron/universal@1.0.5":
   "integrity" "sha512-zX9O6+jr2NMyAdSkwEUlyltiI4/EBLu2Ls/VD3pUQdi3cAYeYfdQnT2AJJ38HE4QxLccbU13LSpccw1IWlkyag=="
   "resolved" "https://registry.npmmirror.com/@electron/universal/-/universal-1.0.5.tgz"
@@ -4159,7 +4164,7 @@
   "resolved" "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.68.tgz"
   "version" "1.4.68"
 
-"electron@^13.0.0":
+"electron@^13.0.0", "electron@>= 13.0.0":
   "integrity" "sha512-Es/sBy85NIuqsO9MW41PUCpwIkeinlTQ7g0ainfnmRAM2rmog3GBxVCaoV5dzEjwTF7TKG1Yr/E7Z3qHmlfWAg=="
   "resolved" "https://registry.npmmirror.com/electron/-/electron-13.6.9.tgz"
   "version" "13.6.9"
@@ -6909,6 +6914,11 @@
   "integrity" "sha512-XHXfu/yOQRy9vYOtUDVMN60OEJjW013GoObG1o+xwQTpB9eYJX/BjXMsdW13ZDPruFhYYn0AG22w0xgQMwl3Nw=="
   "resolved" "https://registry.npmmirror.com/pascalcase/-/pascalcase-0.1.1.tgz"
   "version" "0.1.1"
+
+"path-browserify@^1.0.1":
+  "integrity" "sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g=="
+  "resolved" "https://registry.npmmirror.com/path-browserify/-/path-browserify-1.0.1.tgz"
+  "version" "1.0.1"
 
 "path-browserify@0.0.1":
   "integrity" "sha512-BapA40NHICOS+USX9SN4tyhq+A2RrN/Ws5F0Z5aMHDp98Fl86lX8Oti8B7uN93L4Ifv4fHOEA+pQw87gmMO/lQ=="
