@@ -1,17 +1,21 @@
 <template>
   <div class="background">
     <v-app>
-      <v-main>
-        <v-app-bar dense
+      <v-main class="overflow-hidden">
+        <v-app-bar  dense
                     elevation="1"
+                    flat
                     outlined>
+          <v-btn
+              depressed
+              icon
+          ><font-awesome-icon icon="bars" />
+          </v-btn>
           <v-app-bar-title>
             <span class="appTitle"> {{ appTitle }} </span>
           </v-app-bar-title>
         </v-app-bar>
         <HelloWorld/>
-        <div v-ripple>        <font-awesome-icon icon="bars"/>
-        </div>
       </v-main>
     </v-app>
   </div>
@@ -19,21 +23,17 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-
   components: {
     HelloWorld
   },
-
   data() {
     return {
       appTitle: 'Title Placeholderdfdsfusdfdsffkudfsusdujksdfjkdsfjkdsfjk'
     }
   }
 }
-
 </script>
 
 <style>
@@ -48,16 +48,10 @@ html::-webkit-scrollbar{
   -webkit-app-region: drag;
   padding-left: 0 !important;
 }
-
 .background{
   height: 600px;
   width: 350px;
   border-radius: 10px;
   display: block;
-}
-
-body{ /** weird fix **/
-  padding: 0;
-  margin: 0;
 }
 </style>
