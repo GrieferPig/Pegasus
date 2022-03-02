@@ -16,7 +16,7 @@ module.exports = {
                 loader: "vue-loader"
             },
             {
-                test: /\.scss$/,
+                test: /\.(s?css)$/,
                 use: [
                     'vue-style-loader',
                     'css-loader',
@@ -24,12 +24,16 @@ module.exports = {
                 ]
             },
             {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
+            },
+            {
                 test: /\.(png|jpe?g|gif)$/i,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            name: 'imgs/[hash].ext',
+                            name: '[hash].ext',
                             publicPath: 'dist'
                         }
                     }
@@ -46,7 +50,7 @@ module.exports = {
     },
     output: {
         filename: "[name].js",
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
     },
     mode: "development",
     target: "electron-renderer"
