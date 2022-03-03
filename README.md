@@ -55,8 +55,6 @@ Be sure to check out options in `package.json` where you can config a lot of pro
 
 "electron-builder": "^22.14.13",
 
-"lodash": "^4.17.21",
-
 "node-sass": "^7.0.1",
 
 "sass": "^1.38.0",
