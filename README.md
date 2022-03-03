@@ -10,6 +10,7 @@ And for another purpose: Convenience.
 
 ***Notice***: although this seems to work, it literally 'runs,' so please do not use this in a production environment (and probably you won't), in case you don't want tons of errors.
 
+Also, electron-builder is included.
 ## How to build?
 git clone this repo, then
 

@@ -2,6 +2,7 @@
   <v-app>
     <v-main>
       <HelloWorld/>
+      <img src="./assets/lmfao.jpg" alt="LMFAO">
     </v-main>
   </v-app>
 </template>

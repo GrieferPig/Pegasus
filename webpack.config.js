@@ -24,16 +24,12 @@ module.exports = {
                 ]
             },
             {
-                test: /\.svg$/,
-                loader: 'svg-inline-loader'
-            },
-            {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif|svg)$/i,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[hash].ext',
+                            name: '../../dist/assets/[hash].ext', //wtf
                             publicPath: 'dist'
                         }
                     }
