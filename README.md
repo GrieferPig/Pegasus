@@ -4,11 +4,11 @@
 ## Why this?
 IDK really. 
 
-There's a project which I need electron and vue settled up, then I saw Vuetify is darn good and want to add it to my project, then found out that only Typescript supports some certain option of vuetify so I integrated webpack and typescript.
+There's a project in which I need electron and vue settled up. Then I saw Vuetify is darn good and wanted to add it to my project. Then I found out that only typescript supports some particular option of vuetify, so I integrated webpack and typescript.
 
-And for another purpose: Don't waste time on setting up environment if you can use that time to develop your app.
+And for another purpose: Convenience.
 
-***Notice:*** although this seems work, it literally 'runs', so please do not use this in a production environment (and probably you won't), in case you don't want tons of errors.
+***Notice***: although this seems to work, it literally 'runs,' so please do not use this in a production environment (and probably you won't), in case you don't want tons of errors.
 
 ## How to build?
 git clone this repo, then
