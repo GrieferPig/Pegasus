@@ -2,12 +2,13 @@
   <v-app>
     <v-main>
       <HelloWorld/>
-      <img src="./assets/lmfao.jpg" alt="LMFAO">
+      <v-img src="./assets/lmfao.jpg" alt="LMFAO"/>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import lmfao from './assets/lmfao.jpg'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {

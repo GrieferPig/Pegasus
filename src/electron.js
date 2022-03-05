@@ -9,7 +9,7 @@ function createWindow() {
         }
     })
 
-    win.loadFile('./src/index.html')
+    win.loadFile('./dist/index.html')
 }
 
 app.whenReady().then(createWindow)
@@ -25,3 +25,7 @@ app.on('activate', () =>{
         createWindow()
     }
 })
+
+try {
+    require('electron-reloader')(module)
+} catch (_) {}//hot reload

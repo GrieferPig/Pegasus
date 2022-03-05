@@ -1,5 +1,7 @@
 const path = require('path');
 const {VueLoaderPlugin} = require('vue-loader');
+const CopyPlugin = require("copy-webpack-plugin");
+
 
 module.exports = {
     module: {
@@ -29,8 +31,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '../../dist/assets/[hash].ext', //wtf
-                            publicPath: 'dist'
+                            name: './assets/[name].[ext]',
                         }
                     }
                 ]
@@ -38,7 +39,10 @@ module.exports = {
         ]
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new CopyPlugin({
+            patterns: [{from: "./src/index.html", to: "./"}]
+        })
     ],
     entry: {
         "bundle": ["./src/vue.js"],
@@ -46,8 +50,14 @@ module.exports = {
     },
     output: {
         filename: "[name].js",
+        publicPath: 'auto',
         path: path.resolve(__dirname, 'dist'),
     },
     mode: "development",
-    target: "electron-renderer"
+    devtool: 'inline-source-map',
+    target: "electron-renderer",
+    watch: true,
+    watchOptions: {
+        ignored: ['./node_modules','./dist*', '.idea'],
+    }
 }
