@@ -71,10 +71,10 @@
       ]
     },
     "mac": {
-      "icon": "./src/asset/icon.ico"
+      "icon": "./src/assets/icon.ico"
     },
     "win": {
-      "icon": "./src/asset/icon.ico",
+      "icon": "./src/assets/icon.ico",
       "target": [
         {
           "target": "nsis",
@@ -85,7 +85,7 @@
       ]
     },
     "linux": {
-      "icon": "./src/asset/icon.ico"
+      "icon": "./src/assets/icon.ico"
     },
     "nsis": {
       "oneClick": true,
