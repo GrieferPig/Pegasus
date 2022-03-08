@@ -5,7 +5,7 @@
   "author": "GrieferPig",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "dev": "concurrently \"npm run build\" \"npm run start\"",
+    "dev": "npm run build & npm run start",
     "dist": "npm run build && electron-builder",
     "pack": "electron-builder --dir",
     "postinstall": "electron-builder install-app-deps",
@@ -46,7 +46,7 @@
     "copyright": "All right reserved",
     "appId": "com.rick.ashley",
     "extends": null,
-    "asar": false,
+    "asar": true,
     "directories": {
       "output": "dist_electron"
     },

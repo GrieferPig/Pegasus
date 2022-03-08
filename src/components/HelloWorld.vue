@@ -5,7 +5,7 @@
       <v-img src="./assets/logo.svg"/>
       <v-img alt="LMFAO" src="./assets/lmfao.jpg"/>
       <v-icon icon="mdi-home"/>
-      <v-btn block>wtf</v-btn>
+      <v-btn @click="closeWin">wtf</v-btn>
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
           <div>Welcome to the Vuetify 3 Alpha</div>
@@ -143,6 +143,11 @@ export default {
       },
     ],
   }),
+  methods: {
+    closeWin(){
+      window.electron.close()
+    }
+  }
 }
 /**
  *       <v-col cols="12">

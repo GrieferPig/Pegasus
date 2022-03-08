@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import lmfao from './assets/lmfao.jpg'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
@@ -20,6 +19,6 @@ export default {
 
   data: () => ({
     //
-  }),
+  })
 }
 </script>

@@ -41,7 +41,10 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new CopyPlugin({
-            patterns: [{from: "./src/index.html", to: "./"}]
+            patterns: [
+                {from: "./src/index.html", to: "./"},
+                {from: "./src/preload.js", to: "./"}
+            ]
         })
     ],
     entry: {
@@ -56,7 +59,6 @@ module.exports = {
     mode: "development",
     devtool: 'inline-source-map',
     target: "electron-renderer",
-    watch: true,
     watchOptions: {
         ignored: ['./node_modules','./dist*', '.idea'],
     }
