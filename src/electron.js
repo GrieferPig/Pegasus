@@ -3,15 +3,22 @@ const path = require("path");
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 800,
+        width: 350,
         height: 600,
+        frame: false,
+        transparent: true,
+        resizable: true,
         webPreferences: {
+            experimentalFeatures: true,
             nodeIntegration: true,
             preload: path.join(__dirname, './preload.js'),
+            enableRemoteModule: true,
         }
     })
 
     win.loadFile('./dist/index.html')
+    win.webContents.openDevTools({mode: "detach"});
+
 }
 
 app.whenReady().then(createWindow)
@@ -29,7 +36,7 @@ app.on('activate', () =>{
 })
 
 const {ipcMain} = require('electron')
-ipcMain.on('exit-app', (evt, arg) => {
+ipcMain.on('close-app', (evt, arg) => {
     //app.quit();
     app.exit();//wtf why I cant use .quit()
 })
