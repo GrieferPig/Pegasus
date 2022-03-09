@@ -1,84 +1,65 @@
-# <center>electron-vue-vuetify-ts-webpack-template</center>
-#### <center>Template of electron, vue, vuetify, typescript and webpack.</center>
+# <center>Pegasus Launcher</center>
+#### <center>Featherweight, no, Heavyweight, newbie-friendly Minecraft launcher.</center>
 ***
 ## Why this?
-IDK really. 
+Pegasus Launcher aims for the ultimate compactness (in functionality) and usability, which means, it abandons all the redundant, fancy functionality, while keeping the necessary bits to start Minecraft.
 
-There's a project in which I need electron and vue settled up. Then I saw Vuetify is darn good and wanted to add it to my project. Then I found out that only typescript supports some particular option of vuetify, so I integrated webpack and typescript.
+And obviously, you don't need an AI assistant to launch Minecraft if you can do it within one click.
 
-And for another purpose: Convenience.
+## Why electron?
+IDK really. Electron has literally no advantages except it's JVM-independent.
 
-***Notice***: although this seems to work, it literally 'runs,' so please do not use this in a production environment (and probably you won't), in case you don't want tons of errors.
+For how bad is it, imagine a 250MiB Hello World app.
 
-Also, electron-builder is included.
-## How to build?
-git clone this repo, then
+## Well, how usable can it be?
+Select a version, click Launch. That’s it. I’m sure you’ll learn in *10 seconds flat*.
 
-`cd electron-vue-vuetify-ts-webpack-template`
+No manual configuration is needed, as the launcher has done for you. *Although* you may want to edit that in the configuration panel.
 
-for npm,
+## Features?
+- Download and launch Minecraft (obviously)
+- Multiple accounts support including Demo/Mojang/Microsoft/Authlib-inject accounts
+- Fast (threaded) download
+- Beautiful and overused UI according to Material Design
+- Set up OpenJDK Runtime if no JRE detected
+- Advanced runtime configuration
+- Log recording
+- i18n support (for later)
+- Bugs. Lots of bugs.
 
-`npm install`
+## Forge/LiteLoader/Optifine Support?
+No.
 
-`npm run dev`
+Just kidding. Let’s talk about that later.
 
-or for yarn,
+## Okay, sounds pretty good. Download link?
+Okay, then bad news for you. Currently it’s a proof-of-concept. **Hopefully**, this launcher can finish in a feaw month, but LOL I have no guarantee for this project.
 
-`yarn install`
+For alternatives(and the inspiration of this project), how about Andy-K-Sparklight’s [Alicorn Launcher](https://github.com/Andy-K-Sparklight/Alicorn).
 
-`yarn dev`
+## Sounds cool! I'm in.
+Thanks! Others' contribution is definitely and extremely helpful for this project.  
+Feel free to post issues / pull requests if you find something which can improve.
 
-Be sure to check out options in `package.json` where you can config a lot of project-specific settings.
+***
 
-## Run Commands
-    "build": "webpack --config webpack.config.js",
-    "dev": "npm run build && npm run start",
-    "dist": "npm run build && electron-builder",
-    "pack": "electron-builder --dir",
-    "postinstall": "electron-builder install-app-deps",
-    "start": "electron ."
+### Docs. Yes it's boring.
+- [How to build Pegasus Launcher](doc/build.md)
 
-## Nutrition Facts
+***
 
-"@mdi/font": "5.9.55",
+###### *Special thanks to these amazing project. Without them, this project would **never** finish.*
+- Electron.js
+- Node.js
+- FontAwesome
+- Vue.js
+- Vuetify.js (although still in alpha stage)
+- Typescript, for being the worst programming language I've ever dealt with
+- Alicorn Launcher, for *inspiration*
 
-"roboto-fontface": "*",
-
-"vue-style-loader": "^4.1.3",
-
-"vuetify": "npm:@vuetify/nightly@next",
-
-"webfontloader": "^1.0.0"
-"css-loader": "^6.6.0",
-
-"electron": "^17.1.0",
-
-"electron-builder": "^22.14.13",
-
-"node-sass": "^7.0.1",
-
-"sass": "^1.38.0",
-
-"sass-loader": "^12.6.0",
-
-"style-loader": "^3.3.1",
-
-"svg-inline-loader": "^0.8.2",
-
-"ts-loader": "^9.2.7",
-
-"typescript": "^4.6.2",
-
-"vue": "^3.2.31",
-
-"vue-cli-plugin-vuetify": "~2.4.6",
-
-"vue-loader": "^17.0.0",
-
-"vue-template-compiler": "^2.6.14",
-
-"vuetify-loader": "^2.0.0-alpha.0",
-
-"webpack": "^5.69.1",
-
-"webpack-cli": "^4.9.2"
+***
+Licensed under Mozilla Public License Version 2.0. All rights reserved.  
+"Minecraft", "我的世界" and its logo are affiliates of Mojang AB.  
+"My Little Pony: Friendship is Magic" is affiliated with Hasbro.  
+Not Related to Mojang AB, Hasbro and other organizations.  
+Other trademarks belong to their owner.

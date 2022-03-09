@@ -1,9 +1,10 @@
 <template>
+  <h1>Launch</h1>
 </template>
 
 <script>
 export default {
 
-  name: 'HelloWorld'
+  name: 'LaunchPage'
 }
 </script>

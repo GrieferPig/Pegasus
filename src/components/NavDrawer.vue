@@ -7,7 +7,10 @@
   <v-list color="transparent" density="compact">
     <v-list-item  v-for="(item, i) in items"
                   :key="i"
-                  :value="item">
+                  :value="item"
+                  :color="selected"
+                  :active="item.selected"
+                  @click="navClick(item)">
       <v-list-item-avatar left>
         <v-icon :icon="item.icon"></v-icon>
       </v-list-item-avatar>
@@ -18,18 +21,41 @@
 </template>
 
 <script>
-import {ref} from "vue";
-
 export default {
   name: "NavDrawer",
   data() {
     return {
       items: [
         {
-          text: 'Test',
-          icon: 'mdi-clock',
+          text: 'Launch',
+          icon: 'mdi-send',
+          selected: true
+        },
+        {
+          text: 'Versions',
+          icon: 'mdi-formatlistbulleted',
+          selected: false
+        },
+        {
+          text: 'Configuration',
+          icon: 'mdi-wrench',
+          selected: false
+        },
+        {
+          text: 'Settings',
+          icon: 'mdi-cog',
+          selected: false
         },
       ]
+    }
+  },methods: {
+    async navClick(item){
+      let x;
+      this.$parent.$parent.$parent.$parent.switchPage(item.text) //hax
+      for(x in this.items){
+        console.log(this.items)
+      }
+      item.selected = true;
     }
   }
 }

@@ -1,15 +1,15 @@
 <template>
   <div class="background">
-    <v-app :theme="theme">
-      <v-main class="overflow-hidden">
+    <v-app :theme="theme" style="overflow: scroll !important;">
+      <v-main>
         <v-app-bar
             color="primary"
         >
           <template v-slot:prepend>
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" ></v-app-bar-nav-icon>
           </template>
 
-          <v-app-bar-title>Photos</v-app-bar-title>
+          <v-app-bar-title class="appTitle">{{ appTitle }}</v-app-bar-title>
 
           <template v-slot:append>
             <v-btn icon="mdi-dots-vertical"></v-btn>
@@ -20,27 +20,44 @@
             temporary
             class="navDrawerStyle">
           <template v-slot:append>
-            <v-btn color="transparent" icon flat @click="toggleTheme" class="toggleThemeSwitch">
-              <font-awesome-icon v-if="theme === 'darkTheme'" icon="moon"/>
-              <font-awesome-icon v-if="theme === 'lightTheme'" icon="sun"/>
+            <v-divider/>
+            <div style="float:right;margin-bottom: 5px;margin-right: 5px">
+            <v-btn color="transparent" icon flat @click="close" class="closeWinSwitch">
+              <v-icon icon="mdi-close" />
             </v-btn>
+              <v-btn color="transparent" icon flat @click="toggleTheme" class="toggleThemeSwitch">
+                <font-awesome-icon v-if="theme === 'darkTheme'" icon="moon"/>
+                <font-awesome-icon v-if="theme === 'lightTheme'" icon="sun"/>
+              </v-btn>
+            </div>
           </template>
-          <NavDrawer/>
+          <NavDrawer></NavDrawer>
         </v-navigation-drawer>
-        <HelloWorld/>
+        <transition mode="out-in">
+          <div style="overflow: scroll;">
+            <component :is="currentPage"></component>
+          </div>
+        </transition>
       </v-main>
     </v-app>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { markRaw } from 'vue'
+import LaunchPage from './components/LaunchPage.vue'
+import ConfigPage from './components/ConfigPage.vue'
+import SettingsPage from './components/SettingsPage.vue'
+import VersionsPage from "./components/VersionsPage.vue";
 import NavDrawer from './components/NavDrawer.vue'
 import {ref} from 'vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    LaunchPage: markRaw(LaunchPage),
+    ConfigPage: markRaw(ConfigPage),
+    SettingsPage: markRaw(SettingsPage),
+    VersionsPage: markRaw(VersionsPage),
     NavDrawer
   },
   data() {
@@ -48,6 +65,7 @@ export default {
       appTitle: 'Title Placeholder',
       hover: false,
       drawer: false,
+      currentPage: 'LaunchPage',
     }
   },
   setup() {
@@ -59,19 +77,38 @@ export default {
   },methods: {
     close() {
       window.electron.close()
+    },
+    switchPage: function(pageName){
+      var vm = this; //copy of this
+      switch (pageName){
+        case "Launch":
+          vm.currentPage = LaunchPage;
+          return;
+        case "Configuration":
+          vm.currentPage = ConfigPage;
+          return;
+        case "Settings":
+          vm.currentPage = SettingsPage;
+          return;
+        case "Versions":
+          vm.currentPage = VersionsPage;
+          return;
+        default:
+          return;
+      }
+      console.log(vm.currentPage)
     }
   }
 }
 </script>
 
 <style>
-html::-webkit-scrollbar {
-  width: 0px; /** hide scroolbar**/
+::-webkit-scrollbar {
+  display: none; /* hide all the nasty scrollbar */
 }
 
 .appTitle {
   display: block;
-  width: 210px;
   text-overflow: ellipsis;
   overflow: hidden;
   -webkit-app-region: drag;
@@ -82,6 +119,8 @@ html::-webkit-scrollbar {
   padding: 6px 5px; /*why you need a 20px left padding*/
 }
 
+
+
 .background {
   height: 600px;
   width: 350px;
@@ -90,10 +129,6 @@ html::-webkit-scrollbar {
   user-select: none;
 }
 
-.toggleThemeSwitch{
-  margin-left: 90%;
-  margin-bottom: 10px;
-}
 
 .navDrawerStyle{
   background: rgb(var(--v-theme-accent));
