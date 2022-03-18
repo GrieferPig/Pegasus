@@ -32,6 +32,12 @@ No.
 
 Just kidding. Let’s talk about that later.
 
+## Wait, how about Fabric?
+
+> Dumb fabric. - Sweetie Belle, S1E18
+
+So, duh.
+
 ## Okay, sounds pretty good. Download link?
 Okay, then bad news for you. Currently it’s a proof-of-concept. **Hopefully**, this launcher can finish in a feaw month, but LOL I have no guarantee for this project.
 
