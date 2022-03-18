@@ -8,9 +8,9 @@
     <v-list-item  v-for="(item, i) in items"
                   :key="i"
                   :value="item"
-                  :color="selected"
                   :active="item.selected"
-                  @click="navClick(item)">
+                  active-color="secondary"
+                  @click="navClick(item, i)">
       <v-list-item-avatar left>
         <v-icon :icon="item.icon"></v-icon>
       </v-list-item-avatar>
@@ -49,11 +49,12 @@ export default {
       ]
     }
   },methods: {
-    async navClick(item){
+    async navClick(item, i){
       let x;
       this.$parent.$parent.$parent.$parent.switchPage(item.text) //hax
-      for(x in this.items){
-        console.log(this.items)
+      this.$parent.$parent.$parent.$parent.appTitle = item.text;
+      for(x in this.$data.items){
+        this.$data.items[x].selected =  false; //why it returns an array
       }
       item.selected = true;
     }

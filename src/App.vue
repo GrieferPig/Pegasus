@@ -62,7 +62,7 @@ export default {
   },
   data() {
     return {
-      appTitle: 'Title Placeholder',
+      appTitle: 'Launch',
       hover: false,
       drawer: false,
       currentPage: 'LaunchPage',

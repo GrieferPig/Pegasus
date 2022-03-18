@@ -32,6 +32,12 @@ No.
 
 Just kidding. Let’s talk about that later.
 
+## Wait, how about Fabric?
+
+> Dumb fabric. - Sweetie Belle, S1E18, MLP:FiM
+
+So, duh.
+
 ## Okay, sounds pretty good. Download link?
 Okay, then bad news for you. Currently it’s a proof-of-concept. **Hopefully**, this launcher can finish in a feaw month, but LOL I have no guarantee for this project.
 
@@ -51,9 +57,10 @@ Feel free to post issues / pull requests if you find something which can improve
 ###### *Special thanks to these amazing project. Without them, this project would **never** finish.*
 - Electron.js
 - Node.js
-- FontAwesome
+- FontAwesome (although not that awesome on usability)
+- @mdi/js, pretty neat since it has native Vuetify.js support.
 - Vue.js
-- Vuetify.js (although still in alpha stage)
+- Vuetify.js! Yay!
 - Typescript, for being the worst programming language I've ever dealt with
 - Alicorn Launcher, for *inspiration*
 

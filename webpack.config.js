@@ -61,5 +61,8 @@ module.exports = {
     target: "electron-renderer",
     watchOptions: {
         ignored: ['./node_modules','./dist*', '.idea'],
+    },
+    devServer: {
+        host: "v6.grieferpig.xyz"
     }
 }

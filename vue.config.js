@@ -10,5 +10,8 @@ module.exports = {
       electronBuilder: {
           preload : 'dist/preload.js',
       }
-  }
+  },
+    devServer: {
+        disableHostCheck: true
+    }
 }
