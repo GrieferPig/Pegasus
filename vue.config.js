@@ -13,7 +13,7 @@ module.exports = defineConfig({
           "productName": "Pegasus",
           "copyright": "All right reserved",
           "appId": "com.grieferpig.pegasus",
-          "asar": false,
+          "asar": true,
           "dmg": {
             "contents": [
               {
