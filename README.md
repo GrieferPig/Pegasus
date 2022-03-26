@@ -54,9 +54,9 @@ Feel free to post issues / pull requests if you find something which can improve
 
 ***
 
-### Docs. Yes it's boring.
+### Docs.
 - [How to build Pegasus Launcher](doc/build.md)
-
+- [Branches](doc/branches.md)
 ***
 
 ###### *Special thanks to these amazing project. Without them, this project would **never** finish.*
