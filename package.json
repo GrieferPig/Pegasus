@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Heavyweight, newbie-friendly Minecraft launcher.",
   "author": "GrieferPig",
+  "email": "grieferpig@163.com",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
