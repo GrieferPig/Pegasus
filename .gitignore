@@ -2,7 +2,9 @@
 node_modules
 /dist
 
+# PM lock files
 package-lock.json
+yarn.lock
 
 # local env files
 .env.local
