@@ -2,7 +2,7 @@
   "name": "pegasus",
   "version": "1.0.0",
   "description": "Heavyweight, newbie-friendly Minecraft launcher.",
-  "author": "GrieferPig",
+  "author": "GrieferPig <grieferpig@163.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
