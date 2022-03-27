@@ -30,10 +30,10 @@ module.exports = defineConfig({
             ]
           },
           "mac": {
-            "icon": "./src/assets/icon.ico"
+            "icon": "./src/assets/icon.png"
           },
           "win": {
-            "icon": "./src/assets/icon.ico",
+            "icon": "./src/assets/icon.png",
             "target": [
               {
                 "target": "nsis",
@@ -44,7 +44,7 @@ module.exports = defineConfig({
             ]
           },
           "linux": {
-            "icon": "./src/assets/icon.ico"
+            "icon": "./src/assets/icon.png"
           },
           "nsis": {
             "oneClick": true,
