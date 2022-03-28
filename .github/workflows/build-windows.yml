@@ -12,6 +12,9 @@ on:
       package*
       *.config.js
 
+env:
+  GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
 jobs:
   build:
 
