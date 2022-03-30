@@ -9,6 +9,7 @@ on:
       - '.*/**'
       - 'doc_src/*'
       - 'package*'
+      - '**.md'
 
 jobs:
   release:
