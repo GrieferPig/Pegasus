@@ -4,7 +4,7 @@
   "description": "Heavyweight, newbie-friendly Minecraft launcher.",
   "author": "GrieferPig <grieferpig@163.com>",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve ",
     "build": "yarn add electron && vue-cli-service build",
     "electron:build": "vue-cli-service electron:build -p always",
     "electron:serve": "vue-cli-service electron:serve",
