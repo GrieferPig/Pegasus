@@ -17,4 +17,6 @@ R stands for "Revision".
 
 U stands for "unchecked", usually used in Indev branch. This slot is replaceable by filling C. C stands for "checked".
 
-7 is the commit index, which indicates how many commits does this version took.
+7 is the Patch index, which indicates how many pAtches did this version paTched. 
+
+(lmfao 3 patChes in a row, *literally*)
