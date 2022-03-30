@@ -8,7 +8,7 @@
     "build": "yarn add electron && vue-cli-service build",
     "electron:build": "vue-cli-service electron:build",
     "electron:serve": "vue-cli-service electron:serve",
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "echo postinstall called",
     "postuninstall": "electron-builder install-app-deps"
   },
   "main": "background.js",
