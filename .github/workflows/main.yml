@@ -4,7 +4,6 @@ on:
   push:
     branches: 
       - master
-      - Preview
     paths-ignore:
       - '.*/**'
       - 'doc_src/*'
