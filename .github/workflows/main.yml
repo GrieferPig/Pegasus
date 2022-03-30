@@ -2,13 +2,13 @@ name: Build/release
 
 on: 
   push:
-    branches: [ master, Preview ]
-    
+    branches: 
+      - master
+      - Preview
     paths-ignore:
-      .github
-      doc_src
-      package*
-      *.config.js
+      - '.*/**'
+      - 'doc_src/*'
+      - 'package*'
 
 jobs:
   release:
