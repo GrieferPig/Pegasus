@@ -4,6 +4,7 @@
       <v-main>
         <v-app-bar
             color="primary"
+
         >
           <template v-slot:prepend>
             <v-app-bar-nav-icon @click.stop="drawer = !drawer" ></v-app-bar-nav-icon>
