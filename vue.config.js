@@ -10,6 +10,7 @@ module.exports = defineConfig({
       electronBuilder: {
         preload: './src/preload.js',
         builderOptions: {
+          publish: ['github'],
           "productName": "Pegasus",
           "copyright": "All right reserved",
           "appId": "com.grieferpig.pegasus",

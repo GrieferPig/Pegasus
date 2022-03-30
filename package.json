@@ -1,12 +1,12 @@
 {
   "name": "pegasus",
-  "version": "v0.0.1-RU1",
+  "version": "0.0.1-RU1",
   "description": "Heavyweight, newbie-friendly Minecraft launcher.",
   "author": "GrieferPig <grieferpig@163.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "yarn add electron && vue-cli-service build",
-    "electron:build": "vue-cli-service electron:build",
+    "electron:build": "vue-cli-service electron:build -p always",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
