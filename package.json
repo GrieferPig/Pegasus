@@ -1,6 +1,6 @@
 {
   "name": "pegasus",
-  "version": "0.0.1-RU1",
+  "version": "0.0.1",
   "description": "Heavyweight, newbie-friendly Minecraft launcher.",
   "author": "GrieferPig <grieferpig@163.com>",
   "scripts": {
