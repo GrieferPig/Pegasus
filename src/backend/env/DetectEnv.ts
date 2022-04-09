@@ -1,4 +1,5 @@
 const cp = require("child_process");
+const os = require("os")
 
 export const detectJre = function(){
     return new Promise(function(resolve,reject){
@@ -19,10 +20,9 @@ export const detectJre = function(){
     })
 }
 
-
 export const isJrePresent = function(){
-    return new Promise(function(resolve,reject){
-        cp.exec("jav a",function(err,stdout,stderr){
+    return new Promise(function(resolve){
+        cp.exec("java",function(err,stdout,stderr){
             if(stderr.includes("-help")){ // maybe -help is universal among every jre distro
                 resolve(true)
             }else{
@@ -31,3 +31,23 @@ export const isJrePresent = function(){
         });
     })
 }
+
+export const isInChinaMainland = function(){
+    // implement l8r not needed for now
+    return new Promise(function(resolve, reject){
+
+    })
+}
+
+export const getOsInfo = async function(){
+        const _OsInfo = {
+            platform: os.platform(),
+            arch: os.arch(),
+            totalMem: Math.floor(os.totalmem()/1024/1024), // some part of ram are hardware preserved
+            release: os.release(),
+            userHomeDir: os.userInfo().homedir,
+            cpu_count: os.cpus().length
+        }
+        return Promise.resolve(_OsInfo)
+}
+
