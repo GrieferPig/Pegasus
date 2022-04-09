@@ -3,12 +3,9 @@
 // i hate promise
 
 import {detectJre, getOsInfo, isJrePresent} from "./env/DetectEnv";
-import {download} from "./util/Downloader"
+import {download, getRaw} from "./util/Downloader"
 
-let osinfo;
-getOsInfo().then(data =>{
-    osinfo = data
-    download("http://github.com",osinfo.userHomeDir).then(data =>{
-        console.log(data)
-    })
+getRaw("https://launchermeta.mojang.com/mc/game/version_manifest_v2.json").then(data=>{
+    // @ts-ignore I know what I'm doing
+    console.log(data.toString())
 })
