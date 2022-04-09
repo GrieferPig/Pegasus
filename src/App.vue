@@ -4,7 +4,6 @@
       <v-main>
         <v-app-bar
             color="primary"
-
         >
           <template v-slot:prepend>
             <v-app-bar-nav-icon @click.stop="drawer = !drawer" ></v-app-bar-nav-icon>
@@ -18,7 +17,7 @@
         </v-app-bar>
         <v-navigation-drawer
             v-model="drawer"
-            temporary
+            temporaryn
             class="navDrawerStyle">
           <template v-slot:append>
             <v-divider/>
