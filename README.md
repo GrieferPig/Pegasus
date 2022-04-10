@@ -2,6 +2,8 @@
 #### <center>Featherweight, no, Heavyweight, newbie-friendly Minecraft launcher.</center>
 ***
 
+### LATEST COMMITS ARE IN INDEV BRANCH. SEE [Branches](doc_src/branches.md)
+
 ![UI Preview](./doc_src/img.png "UI Preview")
 
 UI Preview
