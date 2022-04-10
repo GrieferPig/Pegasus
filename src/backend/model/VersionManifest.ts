@@ -1,7 +1,7 @@
-declare module VersionManifest {
+export class VersionManifest {
 
     export interface Latest {
-        release: string;
+        const release: string;
         snapshot: string;
     }
 

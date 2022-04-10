@@ -8,7 +8,7 @@ const FAILED: number = -1
 const SUCCESS: number = 0
 const BROKEN_PIPE: number = -2
 
-export class grabber {
+export class Grabber {
     constructor() {}
     public async download(uri: string, pathTo: string):Promise<number>{
         return new Promise<number>(function(resolve){

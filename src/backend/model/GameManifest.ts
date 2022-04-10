@@ -1,4 +1,4 @@
-declare module GameManifest {
+export class GameManifest {
 
     export interface AssetIndex {
         id: string;
