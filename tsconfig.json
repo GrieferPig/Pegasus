@@ -34,12 +34,11 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/backend/model/VersionManifest.d.ts",
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
-  ],
+  ]
 
 }
