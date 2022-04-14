@@ -20,8 +20,8 @@ export async function getGameFolder(): Promise<string> {
     _usrDir = _usrDir.userHomeDir
     if(exist(path.join(_usrDir, gameFolderName))){
         return path.join(_usrDir, gameFolderName)
-    }else if(exist(path.join(__dirname, gameFolderName))){
-        return path.join(__dirname, gameFolderName)
+    }else if(exist(path.join(__dirname, "/../../../",gameFolderName))){
+        return path.join(__dirname, "/../../../",gameFolderName) // cuz too lazy
     }else {
         return NOT_FOUND
     }
