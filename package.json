@@ -21,6 +21,7 @@
     "core-js": "^3.8.3",
     "follow-redirects": "^1.14.9",
     "node-gyp": "^9.0.0",
+    "request-progress": "^3.0.0",
     "roboto-fontface": "*",
     "ts-loader": "~8.2.0",
     "ts-node": "^10.7.0",
