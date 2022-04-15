@@ -1,4 +1,4 @@
-import {getOsInfo} from "../env/DetectEnv";
+import {getOsInfo} from "./DetectEnv";
 import path from "path";
 
 const fs = require("fs")

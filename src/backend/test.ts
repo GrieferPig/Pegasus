@@ -1,8 +1,8 @@
 // test file
 //
-// I hate promise
+// I hate promise (not pinkie's tho aww she's soo adorable)
 
-import {isJrePresent, getOsInfo, getJreInfo, OsInfo} from "./env/DetectEnv"
+import {isJrePresent, getOsInfo, getJreInfo, OsInfo} from "./util/DetectEnv"
 
 async function testDetectEnv(){
     console.log("testing env/DetectEnv.ts: ")
