@@ -13,7 +13,7 @@ const fs = require('fs')
 import {getGameFolder, exist} from "./util/File"
 
 async function fetchLatest(){
-    console.log(exist("C:/"));
+    console.log(await getGameFolder());
     console.log(await getGameFolder())
     let _b:string = await new Grabber().getRaw(Bmclapi.VersionManifestPath)
     let _json: Vm = await new JsonUtil().toJson(_b) as unknown as Vm
@@ -22,7 +22,6 @@ async function fetchLatest(){
     let _json1: Gm = await new JsonUtil().toJson(_b) as unknown as Gm
     console.log(_json1.releaseTime)
     let _usrDir:any = await new DetectEnv().getOsInfo()
-    _usrDir = _usrDir.userHomeDir
     await new Grabber().download(_json1.downloads.client.url, await getGameFolder(), (what:any) => {
         console.log("remaining "+what.time.remaining+", "+Math.round(what.percent*100)+"%"+", total size "+Math.round(what.size.total/1024/1024))
     })

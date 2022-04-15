@@ -15,6 +15,8 @@ export function exist(filename: string): boolean{
     return true;
 }
 
+
+
 export async function getGameFolder(): Promise<string> {
     let _usrDir:any = await new DetectEnv().getOsInfo()
     _usrDir = _usrDir.userHomeDir
