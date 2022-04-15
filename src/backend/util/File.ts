@@ -1,4 +1,4 @@
-import {DetectEnv} from "../env/DetectEnv";
+import {getOsInfo} from "../env/DetectEnv";
 import path from "path";
 
 const fs = require("fs")
@@ -6,7 +6,7 @@ const gameFolderName: string = "/.minecraft/"
 
 export const NOT_FOUND: string = "not found"
 
-export function exist(filename: string): boolean{
+export async function exist(filename: string){
     try{
         fs.accessSync(filename)
     }catch(sayonara){
@@ -18,11 +18,11 @@ export function exist(filename: string): boolean{
 
 
 export async function getGameFolder(): Promise<string> {
-    let _usrDir:any = await new DetectEnv().getOsInfo()
+    let _usrDir:any = await getOsInfo()
     _usrDir = _usrDir.userHomeDir
-    if(exist(path.join(_usrDir, gameFolderName))){
+    if(await exist(path.join(_usrDir, gameFolderName))){
         return path.join(_usrDir, gameFolderName)
-    }else if(exist(path.join(__dirname, "/../../../",gameFolderName))){
+    }else if(await exist(path.join(__dirname, "/../../../",gameFolderName))){
         return path.join(__dirname, "/../../../",gameFolderName) // cuz too lazy
     }else {
         return NOT_FOUND
