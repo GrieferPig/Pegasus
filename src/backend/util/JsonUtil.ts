@@ -4,6 +4,6 @@ export async function toJson(string: string): Promise<JSON> {
     })
 }
 
-export async function toString(json: any) {
-    return JSON.parse(json)
+export async function toString(json) {
+    return JSON.stringify(json)
 }

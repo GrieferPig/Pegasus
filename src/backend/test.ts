@@ -45,5 +45,13 @@ async function testAll(){
     await isin()
 }
 
-testAll()
+//testAll()
 
+import * as LauncherProfiles from './settings/LauncherProfiles'
+
+async function testLauncherProfiles(){
+    await LauncherProfiles.initSettings((await getOsInfo() as OsInfo).userHomeDir)
+    console.log(await LauncherProfiles.getLauncherSettings((await getOsInfo() as OsInfo).userHomeDir))
+}
+
+testLauncherProfiles()
