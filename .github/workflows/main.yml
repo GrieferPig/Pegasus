@@ -4,6 +4,7 @@ on:
   push:
     branches: 
       - Preview
+      - master
     paths-ignore:
       - 'doc_src/*'
       - 'package*'
