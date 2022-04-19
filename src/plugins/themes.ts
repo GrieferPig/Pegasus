@@ -5,14 +5,15 @@ export const lightTheme: ThemeDefinition = {
     colors:{
         primary: '#0097A7',
         secondary: '#009688',
-        accent: '#D1C4E9',
+        accent: '#FFFFFF',
         error: '#e91e63',
         warning: '#ff9800',
         info: '#607d8b',
         success: '#8bc34a',
         background: '#ffffff',
         surface: '#ffffff',
-        navdrawer: '#673AB7'
+        navdrawer: '#673AB7',
+        itembg: '#f6f6f6'
 },
     variables:{}
 }
@@ -30,7 +31,8 @@ export const darkTheme: ThemeDefinition = {
         success: '#8bc34a',
         background: '#000000',
         surface: '#000000',
-        navdrawer: '#512DA8'
+        navdrawer: '#512DA8',
+        item_bg: '#2a2b2c'
     },
     variables:{}
 }

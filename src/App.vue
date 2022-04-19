@@ -4,10 +4,9 @@
       <v-main>
         <v-app-bar
             color="primary"
-
         >
           <template v-slot:prepend>
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer" ></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" @click="sendNot"></v-app-bar-nav-icon>
           </template>
 
           <v-app-bar-title class="appTitle">{{ appTitle }}</v-app-bar-title>
@@ -18,7 +17,7 @@
         </v-app-bar>
         <v-navigation-drawer
             v-model="drawer"
-            temporary
+            temporaryn
             class="navDrawerStyle">
           <template v-slot:append>
             <v-divider/>
@@ -78,6 +77,9 @@ export default {
   },methods: {
     close() {
       window.electron.close()
+    },
+    sendNot(){
+      window.electron.sendNotification()
     },
     switchPage: function(pageName){
       var vm = this; //copy of this

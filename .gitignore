@@ -26,3 +26,7 @@ pnpm-debug.log*
 
 #Electron-builder output
 /dist_electron
+
+# tsc outputs
+/src/backend/**/*.js
+/src/backend/**/*.js.map
