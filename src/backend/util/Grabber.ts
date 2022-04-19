@@ -3,7 +3,7 @@ import request from 'request'
 import progress from 'request-progress'
 
 const http = require('follow-redirects').http;
-const http2 = require('http2')
+const http_orig = require('http')
 const https = require('follow-redirects').https; // pretty good! thx
 const path = require('path');
 
@@ -67,19 +67,35 @@ export async function getRaw(uri: string): Promise<string> {
 }
 
 export async function isInChinaMainland() {
+    return await testNetwork('http://google.com') // 咕噜咕噜
+}
+
+export async function isConnectedToNetwork() {
+    return await testNetwork('1.1.1.1') // cloudsdale's dns webpage
+}
+
+async function testNetwork(uri: string){
+    let options = {
+        host: uri,
+        port: 80,
+        path: '/'
+    };
     return new Promise<boolean>((resolve)=>{
-        // hack found on stackexchange
-        const client = http2.connect('https://www.google.com');
-        client.setTimeout(3000)
-        client.on('connect', () => {
-            client.destroy();
-            resolve(true);
-            console.log(client.destroyed)
+        let req = http_orig.get(options, function (res) {
+            setTimeout(function () {
+                if (!res.destroyed) {
+                    resolve(false)
+                }
+                res.destroy();
+            }, 2000);
+
+            res.on('data', function (lol) {
+                resolve(true)
+                res.destroy()
+            });
         });
-        client.on('timeout', () => {
-            client.close();
-            resolve(false);
-            console.log(client.closed)
+        req.on('error', function (err) {
+            resolve(false)
         });
-    })
+    });
 }

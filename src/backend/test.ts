@@ -19,7 +19,7 @@ async function testFile(){
     console.log("getGameFolder: "+await getGameFolder())
 }
 
-import {getRaw, download, isInChinaMainland} from "./util/Grabber"
+import {getRaw, download, isInChinaMainland, isConnectedToNetwork} from "./util/Grabber"
 import {toJson} from "./util/JsonUtil"
 import {Bmclapi} from "./mirror/Bmclapi";
 import Vm = VersionManifest.RootObject;
@@ -47,7 +47,7 @@ async function testAll(){
 
 //testAll()
 async function isin(){
+    console.log(await isConnectedToNetwork())
     console.log(await isInChinaMainland())
 }
 isin()
-
