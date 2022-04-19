@@ -10,10 +10,11 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
+var win;
 
 async function createWindow() {
   // Create the browser window.
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 350,
     height: 600,
     frame: false,
@@ -92,4 +93,23 @@ ipcMain.on('close-app', (evt, arg) => {
   //app.quit();
   app.exit();//wtf why I can't use .quit()
 })
+
+app.setUserTasks([
+  {
+    program: 'cmd',
+    arguments: '',
+    iconPath: '',
+    iconIndex: 0,
+    title: 'Test',
+    description: 'Give me ponies!'
+  },
+  {
+    program: 'notepad',
+    arguments: '',
+    iconPath: '',
+    iconIndex: 0,
+    title: 'not really useful acturally',
+    description: 'Give me ponies!'
+  }
+])
 

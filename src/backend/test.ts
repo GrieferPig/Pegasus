@@ -37,21 +37,21 @@ async function isin(){
     console.log(await Grabber.isInChinaMainland())
 }
 
+import * as Lp from './settings/LauncherProfiles'
+
+async function testLauncherProfiles(){
+    await Lp.initSettings((await getOsInfo() as OsInfo).userHomeDir)
+    let config: LauncherProfiles.RootObject = await Lp.getLauncherSettings((await getOsInfo() as OsInfo).userHomeDir) as LauncherProfiles.RootObject
+    console.log(config.settings)
+}
+
 async function testAll(){
     console.log("started testing")
     await testDetectEnv()
     await testFile()
     await testGrabberJson()
     await isin()
+    await testLauncherProfiles()
 }
 
-//testAll()
-
-import * as LauncherProfiles from './settings/LauncherProfiles'
-
-async function testLauncherProfiles(){
-    await LauncherProfiles.initSettings((await getOsInfo() as OsInfo).userHomeDir)
-    console.log(await LauncherProfiles.getLauncherSettings((await getOsInfo() as OsInfo).userHomeDir))
-}
-
-testLauncherProfiles()
+testAll()
