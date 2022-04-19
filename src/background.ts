@@ -4,6 +4,7 @@ import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 import path from "path";
+const { Tray, Menu, nativeImage } = require('electron')
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready
@@ -108,8 +109,31 @@ app.setUserTasks([
     arguments: '',
     iconPath: '',
     iconIndex: 0,
-    title: 'not really useful acturally',
+    title: 'not really useful actually',
     description: 'Give me ponies!'
   }
+])
+
+let tray
+
+app.whenReady().then(() => {
+  const icon = nativeImage.createFromPath('./assets/icon.ico')
+  tray = new Tray(icon)
+  // note: your contextMenu, Tooltip and Title code will go here!
+  tray.setContextMenu(contextMenu)
+})
+
+const contextMenu = Menu.buildFromTemplate([
+  {label: "rickrolling"},
+  { label: 'never', type: 'radio' },
+  { label: 'gonna', type: 'normal' },
+  { label: 'give', type: 'radio', checked: true },
+  { label: 'you', type: 'normal' },
+  { type: 'separator' },
+  { label: 'UP', type: 'checkbox' },
+  { label: 'damedane', type: 'submenu', submenu:[
+      {label: 'never gonna let you'},
+      {label: 'down', sublabel: 'oooh what\'s this?'}
+    ]}
 ])
 
