@@ -121,7 +121,7 @@ export default {
   padding: 6px 5px; /*why you need a 20px left padding*/
 }
 
-
+/* wat*/
 
 .background {
   height: 600px;
