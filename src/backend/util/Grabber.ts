@@ -1,16 +1,20 @@
 import {createWriteStream} from 'fs'
 import request from 'request'
 import progress from 'request-progress'
+import {Bmclapi} from "../mirror/Bmclapi";
+import {Mojang} from "../mirror/Mojang";
+import {toJson} from "../util/JsonUtil";
 
 const http = require('follow-redirects').http;
 const http_orig = require('http')
 const https = require('follow-redirects').https; // pretty good! thx
 const path = require('path');
 
+import Vm = VersionManifest.RootObject;
+import Gm = GameManifest.RootObject; // aka G minor
+
 // return values
 const SUCCESS: number = 0
-
-const _test_uri = "http://google.com"
 const ERROR: number = -1
 
 interface progressCallBack {
@@ -36,7 +40,7 @@ export async function download(uri: string, pathTo: string, callback: progressCa
 }
 
 export async function getRaw(uri: string): Promise<string> {
-    return new Promise<string>(function (resolve, reject) {
+    return new Promise<string>(function (resolve) {
         let _tmpstr: string = "";
         if (uri.includes("http:")) {
             http.get(uri, (res) => {
@@ -61,22 +65,22 @@ export async function getRaw(uri: string): Promise<string> {
                 res.on("error", () => {
                     resolve(ERROR.toString())
                 })
-            }).setTimeout(3000);;
+            }).setTimeout(3000);
         }
     })
 }
 
 export async function isInChinaMainland() {
-    return await testNetwork('http://google.com') // 咕噜咕噜
+    return await testNetwork('google.com') // 咕噜咕噜
 }
 
 export async function isConnectedToNetwork() {
     return await testNetwork('1.1.1.1') // cloudsdale's dns webpage
 }
 
-async function testNetwork(uri: string){
+export async function testNetwork(uri: string){
     let options = {
-        host: uri,
+        host: uri, // you cannot include protocol in uri
         port: 80,
         path: '/'
     };
@@ -89,13 +93,33 @@ async function testNetwork(uri: string){
                 res.destroy();
             }, 2000);
 
-            res.on('data', function (lol) {
+            res.on('data', function () {
                 resolve(true)
                 res.destroy()
             });
         });
-        req.on('error', function (err) {
+        req.on('error', function () {
             resolve(false)
         });
     });
 }
+
+// game res related
+
+export const BMCLAPI: string = 'bmclapi';
+export const MOJANG: string = 'mojang';
+
+export async function fetchVersions(mirror: string){
+    switch (mirror){
+        case BMCLAPI:
+            return await toJson(await getRaw(Bmclapi.VersionManifestPath)) as unknown as Vm
+        default:
+            return await toJson(await getRaw(Mojang.VersionManifestPath)) as unknown as Vm
+    }
+}
+
+export async function getLatestVersionManifest(manifest: Vm){
+    return await toJson(await getRaw(Bmclapi.getGameManifestPath(manifest.latest.release, Bmclapi.JSON))) as unknown as Gm
+}
+
+

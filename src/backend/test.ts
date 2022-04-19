@@ -19,23 +19,22 @@ async function testFile(){
     console.log("getGameFolder: "+await getGameFolder())
 }
 
-import {getRaw, download, isInChinaMainland, isConnectedToNetwork} from "./util/Grabber"
-import {toJson} from "./util/JsonUtil"
-import {Bmclapi} from "./mirror/Bmclapi";
+import * as Grabber from "./util/Grabber"
 import Vm = VersionManifest.RootObject;
 import Gm = GameManifest.RootObject; // aka G minor
 
 async function testGrabberJson(){
-    console.log("testing util/Grabber.ts, util/JsonUtil.ts: ")
-    let _b:string = await getRaw(Bmclapi.VersionManifestPath)
-    let _json: Vm = await toJson(_b) as unknown as Vm
-    console.log("latest release of mc client: "+_json.latest.release)
-    _b = await getRaw(Bmclapi.getGameManifestPath(_json.latest.release, Bmclapi.JSON))
-    let _json1: Gm = await toJson(_b) as unknown as Gm
-    console.log("time released: "+_json1.releaseTime)
-    await download(_json1.downloads.client.url, await getGameFolder(), (what:any) => {
+    let _json: Vm = await Grabber.fetchVersions(Grabber.BMCLAPI)
+    let _json1: Gm = await Grabber.getLatestVersionManifest(_json)
+    console.log(_json1.type)
+    await Grabber.download(_json1.downloads.client.url, await getGameFolder(), (what:any) => {
         console.log("remaining "+what.time.remaining+", "+Math.round(what.percent*100)+"%"+", total size "+Math.round(what.size.total/1024/1024))
     })
+}
+
+async function isin(){
+    console.log(await Grabber.isConnectedToNetwork())
+    console.log(await Grabber.isInChinaMainland())
 }
 
 async function testAll(){
@@ -43,11 +42,8 @@ async function testAll(){
     await testDetectEnv()
     await testFile()
     await testGrabberJson()
+    await isin()
 }
 
-//testAll()
-async function isin(){
-    console.log(await isConnectedToNetwork())
-    console.log(await isInChinaMainland())
-}
-isin()
+testAll()
+
