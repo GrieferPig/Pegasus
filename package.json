@@ -11,7 +11,7 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "release": "standard-version",
-    "uncheckedrel": "standard-version --prerelease alpha"
+    "alpharel": "standard-version --prerelease alpha"
   },
   "main": "background.js",
   "dependencies": {
