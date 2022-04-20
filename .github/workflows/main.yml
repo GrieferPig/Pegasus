@@ -8,7 +8,7 @@ on:
       - 'doc_src/*'
       - 'package*'
       - '**.md'
-      - '.github/*'
+      - '.*/**'
 
 jobs:
   release:
