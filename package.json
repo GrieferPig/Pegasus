@@ -1,6 +1,6 @@
 {
   "name": "pegasus",
-  "version": "0.0.2-alpha.0",
+  "version": "0.0.2-alpha.1",
   "description": "Heavyweight, newbie-friendly Minecraft launcher.",
   "author": "GrieferPig <grieferpig@163.com>",
   "scripts": {
@@ -10,8 +10,9 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "release": "standard-version",
-    "alpharel": "standard-version --prerelease alpha"
+    "release": "standard-version && npm run pushtags",
+    "alpharel": "standard-version --prerelease alpha && npm run pushtags",
+    "pushtags": "git push --follow-tags github Indev"
   },
   "main": "background.js",
   "dependencies": {
