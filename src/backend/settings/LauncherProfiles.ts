@@ -11,7 +11,6 @@ export const PROFILE_FILENAME = 'launcher_profiles.json';
 const GAME_FOLDER = '.minecraft' // not mein kampf
 
 export async function initSettings(gameFolder: string){
-    console.log(defaultProfile)
     await fluttershy.writeFileSync(path.join(gameFolder,GAME_FOLDER, PROFILE_FILENAME),
         await JsonUtil.toString(defaultProfile))
 }
@@ -27,4 +26,9 @@ export async function getLauncherSettings(gameFolder: string){
                 }
             })
     }));
+}
+
+export async function saveLauncherSettings(setting: LauncherProfiles.RootObject, gameFolder: string){
+    await fluttershy.writeFileSync(path.join(gameFolder,GAME_FOLDER, PROFILE_FILENAME),
+        await JsonUtil.toString(setting))
 }

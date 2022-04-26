@@ -12,7 +12,7 @@
     "postuninstall": "electron-builder install-app-deps",
     "release": "standard-version && npm run pushtags",
     "alpharel": "standard-version --prerelease alpha && npm run pushtags",
-    "beta": "standard-version --prerelease beta && npm run pushtags",
+    "betarel": "standard-version --prerelease beta && npm run pushtags",
     "pushtags": "git push --follow-tags github Indev"
   },
   "main": "background.js",

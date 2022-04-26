@@ -1,8 +1,8 @@
 import {createWriteStream} from 'fs'
 import request from 'request'
 import progress from 'request-progress'
-import {Bmclapi} from "../mirror/Bmclapi";
-import {Mojang} from "../mirror/Mojang";
+import * as Bmclapi from "../mirror/Bmclapi";
+import * as Mojang from "../mirror/Mojang";
 import {toJson} from "../util/JsonUtil";
 
 const http = require('follow-redirects').http;
@@ -84,12 +84,10 @@ export async function testNetwork(uri: string){
         port: 80,
         path: '/'
     };
-    return new Promise<boolean>((resolve)=>{
+    return new Promise<boolean>((resolve, reject)=>{
         let req = http_orig.get(options, function (res) {
             setTimeout(function () {
-                if (!res.destroyed) {
-                    resolve(false)
-                }
+                reject(false)
                 res.destroy();
             }, 2000);
 

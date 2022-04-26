@@ -45,13 +45,20 @@ async function testLauncherProfiles(){
     console.log(config.settings)
 }
 
+import * as VMgr from './util/VersionMgr'
+
+export async function testVersionMgr(){
+    return await VMgr.listAllLocalVersions(await getGameFolder())
+}
+
 async function testAll(){
     console.log("started testing")
-    await testDetectEnv()
-    await testFile()
-    await testGrabberJson()
-    await isin()
-    await testLauncherProfiles()
+    //await testDetectEnv()
+    //await testFile()
+    //await testGrabberJson()
+    //await isin()
+    //await testLauncherProfiles()
+    await testVersionMgr()
 }
 
 testAll()
