@@ -8,7 +8,12 @@
 </template>
 
 <script>
-let gameList = window.electron.getGameList()
+let gameList;
+window.electron.exposeMe.VersionMgr.listAllLocalVersions('C:/Users/whoisthis/.minecraft/')
+.then(value => {
+  gameList = value
+  console.log(gameList)
+})
 export default {
   name: "VersionsPage",
   data(){

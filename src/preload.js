@@ -2,11 +2,7 @@ const { contextBridge } = require('electron');
 const {ipcRenderer} = require('electron');
 
 console.log('preload loaded')
-import {testVersionMgr} from './backend/test.ts'
-let gameList;
-testVersionMgr().then(value => {
-    gameList = value
-})
+import * as exposeMe from './backend/exposeMe.ts'
 
 contextBridge.exposeInMainWorld('electron', {
     close(){
@@ -15,7 +11,5 @@ contextBridge.exposeInMainWorld('electron', {
     sendNotification(){
         new Notification('this is a notificatoin', { body: 'tHiS iS tHe NoTiFiCaTiOn BoDy' })
     },
-    getGameList(){
-        return gameList
-    }
+    exposeMe
 });
