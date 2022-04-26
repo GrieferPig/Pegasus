@@ -9,7 +9,7 @@ contextBridge.exposeInMainWorld('electron', {
         ipcRenderer.send('close-app')
     },
     sendNotification(){
-        new Notification('this is a notificatoin', { body: 'tHiS iS tHe NoTiFiCaTiOn BoDy' })
+        //new Notification('this is a notificatoin', { body: 'tHiS iS tHe NoTiFiCaTiOn BoDy' })
     },
     exposeMe
 });
