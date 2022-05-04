@@ -1,6 +1,6 @@
 <template>
-<v-list :key="componentKey">
-  <v-btn v-on:click="readGameList()">GamePath = {{ gamePath }}</v-btn>
+<v-list>
+  <v-btn v-on:click="readGameList">{{hasVer}}GamePath = {{ gamePath }}</v-btn>
   <v-list-subheader v-if="hasVer">Installed Versions</v-list-subheader>
   <v-list-subheader v-if="!hasVer">No valid installed versions detected.</v-list-subheader>
   <v-list-item
@@ -18,32 +18,9 @@
 <script>
 const backend = window.electron.exposeMe;
 
-export let gameList;
-export let hasVer = false;
-export let gamePath;
-
-function readGameList() {
-  backend.File.getGameFolder().then(path =>{
-    gamePath = path
-    backend.VersionMgr.listAllLocalVersions(gamePath)
-        .then(value => {
-          gameList = value
-         gameList.forEach(function(item, index){
-           if(!backend.Game.validateGame(gamePath, item)){
-             gameList.splice(index,1);
-             console.log('devalidated '+item+' at '+index+gameList)
-           }
-         })
-          if(gameList){
-            hasVer = true;
-          }else{
-            hasVer = false;
-          }
-          this.forceRerender()
-        })
-  })
-}
-readGameList()
+let gameList;
+let hasVer = false;
+let gamePath;
 
 export default {
   name: "VersionsPage",
@@ -52,13 +29,26 @@ export default {
         gameList,
         hasVer,
         gamePath,
-        componentKey: 0,
       }
   },
-  methods: {
-    readGameList,
-    forceRerender() {
-      this.componentKey += 1;
+  computed: {
+    readGameList: function(){
+      backend.File.getGameFolder().then(path =>{
+        this.gamePath = path
+        let _gamePath = this.gamePath
+        backend.VersionMgr.listAllLocalVersions(this.gamePath)
+            .then(value => {
+              for(let i = 0; i<value.length;i++ ){
+                if(!backend.Game.validateGame(_gamePath, value[i])){
+                  value.splice(i,1);
+                  i--; // go back one item bcs we deleted one. Ugh, dynamic arrays are ANNOYING
+                }
+              }
+              this.gameList = value
+              this.hasVer = !!this.gameList; // lol type converting
+              console.log(this.gameList+this.hasVer)
+            })
+      })
     }
   }
 }
