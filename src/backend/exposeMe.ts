@@ -10,3 +10,7 @@ export const File = _File;
 import * as _VersionMgr from "./util/VersionMgr"
 
 export const VersionMgr = _VersionMgr;
+
+import * as _defaultSettings from "./settings/default"
+
+export const defaultSettings = _defaultSettings;

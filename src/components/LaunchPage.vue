@@ -3,6 +3,9 @@
 </template>
 
 <script>
+
+const backend = window.electron.exposeMe;
+
 export default {
 
   name: 'LaunchPage'

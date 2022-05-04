@@ -29,85 +29,13 @@
 </template>
 
 <script>
+const backend = window.electron.exposeMe;
+
 export default {
   name: "SettingsPage",
   data() {
     return {
-      category: {
-        General: {
-          section: "General",
-          items: {
-            Test1: {
-              title: 'Test1 title.',
-              subtitle: 'switch',
-              type: 'switch',
-              data: 'false',
-              disabled: false
-            },
-            Test2: {
-              title: 'Test2 title.',
-              subtitle: 'button test',
-              type: 'button',
-              data: 'wait what',
-              disabled: false,
-            },
-            Test3: {
-              title: 'Test3 title.',
-              subtitle: 'slider test',
-              type: 'slider',
-              data: '0.7',
-              disabled: false
-            },
-            Test4: {
-              title: 'Test4 title.',
-              subtitle: 'dropdown test',
-              type: 'dropdown',
-              data: '',
-              disabled: false
-            },
-            Test5: {
-              title: 'Test5 title.',
-              subtitle: 'dropdown test',
-              type: 'dropdown',
-              data: '',
-              disabled: false
-            },
-            Test6: {
-              title: 'Test6 title.',
-              subtitle: 'textarea test',
-              type: 'textarea',
-              data: 'HINT TEST',
-              disabled: false
-            },
-          }
-        },
-        Language: {
-          section: "Language",
-          items: {
-            chooseLang: {
-              title: 'Language',
-              subtitle: 'Choose the language that will be used by this launcher.',
-              type: 'dropdown',
-              data: '',
-              disabled: false
-            },
-            ponify: {
-              title: 'Ponify',
-              subtitle: 'Language options for bronies.',
-              type: 'switch',
-              data: 'false',
-              disabled: false,
-            },
-            memify: {
-              title: 'Memify',
-              subtitle: 'Pour memes into this.',
-              type: 'switch',
-              data: 'false',
-              disabled: true
-            },
-          }
-        }
-      }
+      category: backend.defaultSettings.guisettings.category
     }
   }
 }
