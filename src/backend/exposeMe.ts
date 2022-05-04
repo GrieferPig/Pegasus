@@ -14,3 +14,7 @@ export const VersionMgr = _VersionMgr;
 import * as _defaultSettings from "./settings/default"
 
 export const defaultSettings = _defaultSettings;
+
+import * as _Game from './util/Game'
+
+export const Game = _Game
