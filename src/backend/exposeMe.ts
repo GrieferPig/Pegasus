@@ -18,3 +18,7 @@ export const defaultSettings = _defaultSettings;
 import * as _Game from './util/Game'
 
 export const Game = _Game
+
+import * as _Grabber from "./util/Grabber"
+
+export const Grabber = _Grabber

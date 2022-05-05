@@ -1,4 +1,4 @@
-import {createWriteStream} from 'fs'
+import {createWriteStream, readFileSync} from 'fs'
 import request from 'request'
 import progress from 'request-progress'
 import * as Bmclapi from "../mirror/Bmclapi";
@@ -11,7 +11,8 @@ const https = require('follow-redirects').https; // pretty good! thx
 const path = require('path');
 
 import Vm = VersionManifest.RootObject;
-import Gm = GameManifest.RootObject; // aka G minor
+import Gm = GameManifest.RootObject;
+import {fsReadFile} from "ts-loader/dist/utils"; // aka G minor
 
 // return values
 const SUCCESS: number = 0
@@ -120,4 +121,9 @@ export async function getLatestVersionManifest(manifest: Vm){
     return await toJson(await getRaw(Bmclapi.getGameManifestPath(manifest.latest.release, Bmclapi.JSON))) as unknown as Gm
 }
 
-
+const {createHash} = require("crypto");
+export async function verifySHA1(filePath: string): Promise<string>{
+    let hash = createHash('sha1')
+    hash.update(readFileSync(filePath))
+    return hash.digest('hex')
+}

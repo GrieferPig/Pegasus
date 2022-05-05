@@ -4,6 +4,10 @@ export async function toJson(string: string): Promise<JSON> {
     })
 }
 
+export function toJsonSync(string: string) {
+    return JSON.parse(string)
+}
+
 export async function toString(json) {
     return JSON.stringify(json)
 }

@@ -23,15 +23,6 @@ import * as Grabber from "./util/Grabber"
 import Vm = VersionManifest.RootObject;
 import Gm = GameManifest.RootObject; // aka G minor
 
-async function testGrabberJson(){
-    let _json: Vm = await Grabber.fetchVersions(Grabber.BMCLAPI)
-    let _json1: Gm = await Grabber.getLatestVersionManifest(_json)
-    console.log(_json1.type)
-    await Grabber.download(_json1.downloads.client.url, await getGameFolder(), (what:any) => {
-        console.log("remaining "+what.time.remaining+", "+Math.round(what.percent*100)+"%"+", total size "+Math.round(what.size.total/1024/1024))
-    })
-}
-
 async function isin(){
     console.log(await Grabber.isConnectedToNetwork())
     console.log(await Grabber.isInChinaMainland())
@@ -46,7 +37,6 @@ async function testLauncherProfiles(){
 }
 
 import * as VMgr from './util/VersionMgr'
-
 export async function testVersionMgr(){
     return await VMgr.listAllLocalVersions(await getGameFolder())
 }
