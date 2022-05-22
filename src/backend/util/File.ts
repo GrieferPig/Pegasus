@@ -4,6 +4,8 @@ import path from "path";
 const fs = require("fs")
 const gameFolderName: string = "/.minecraft/"
 
+import * as JsonUtil from './JsonUtil'
+
 export const NOT_FOUND: string = "not found"
 
 export async function exist(filename: string){
@@ -42,4 +44,8 @@ export async function rename(filePath: string, fileName: string, newName: string
 
 export async function createFolder(path: string){
     await fs.mkdirSync(path)
+}
+
+export async function readLocalGameJson(gameRoot: string, gameId: string): Promise<GameManifest.RootObject>{
+    return await JsonUtil.toJson(fs.readFileSync(path.join(gameRoot,gameId+".json"))) as unknown as GameManifest.RootObject;
 }
