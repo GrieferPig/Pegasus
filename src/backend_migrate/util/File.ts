@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 
+// file util wrapper for convenience
+
 export function exist(filename: string): boolean{
     try{
         fs.accessSync(filename)
