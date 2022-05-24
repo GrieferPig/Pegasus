@@ -6,7 +6,7 @@ function testGetEnv(){
     console.log(GetEnv.isJrePresent())
 }
 
-testGetEnv()
+// testGetEnv() tested
 
 let _userDir = GetEnv.getOsInfo().userHomeDir
 
@@ -25,7 +25,7 @@ function testFile(){
     console.log(File.removeFile(filepath))
 }
 
-testFile()
+// testFile() tested
 
 import * as Grabber from "./util/Grabber"
 
@@ -41,4 +41,9 @@ async function testGrabber(){
     File.removeFile(path.join(_userDir, "example.txt"))
 }
 
-testGrabber()
+// testGrabber() tested
+
+import * as Validate from "./game/Validate"
+
+console.log(Validate.validateGame(path.join(_userDir, ".minecraft"), "1.18.2"))
+

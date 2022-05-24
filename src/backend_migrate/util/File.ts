@@ -33,14 +33,32 @@ export function createFile(filePath: string): boolean{
     }
 }
 
+function _read(filePath: string): string{
+    return fs.readFileSync(
+        filePath, {encoding: "utf8"});
+}
+
 export function readFile(filePath: string): string{
     if(exist(filePath)){
         // if encoding not set it will return random buffer stuff
-        return fs.readFileSync(
-            filePath, {encoding: "utf8"});
+        return _read(filePath)
     }else{
         return "";
     }
+}
+
+export function readFileAsJson(filePath: string): JSON{
+    let _result;
+    if(exist(filePath)){
+        try{
+            _result = JSON.parse(_read(filePath));
+        }catch (e){
+            _result = JSON.parse("{}")
+        }
+    }else{
+        _result = JSON.parse("{}");
+    }
+    return _result
 }
 
 export function writeFile(filePath: string, content: string): boolean{
