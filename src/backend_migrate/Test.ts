@@ -45,5 +45,10 @@ async function testGrabber(){
 
 import * as Validate from "./game/Validate"
 
-console.log(Validate.validateGame(path.join(_userDir, ".minecraft"), "1.18.2"))
+// console.log(Validate.validateGame(path.join(_userDir, ".minecraft"), "1.18.2"))
+
+import * as Mirror from "./game/mirror/Mirror"
+
+console.log(Mirror.getVersionManifest('wat'))
+console.log(Mirror.getDownloadLink(Mirror.MOJANG, "1.18.2", Mirror.CLIENT))
 
