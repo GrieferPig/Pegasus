@@ -62,12 +62,8 @@ export function readFileAsJson(filePath: string): JSON{
 }
 
 export function writeFile(filePath: string, content: string): boolean{
-    if(exist(filePath)){
-        fs.writeFileSync(filePath, content);
-        return true;
-    }else{
-        return false;
-    }
+    fs.writeFileSync(filePath, content);
+    return exist(filePath);
 }
 
 export function removeFile(path: string): boolean{

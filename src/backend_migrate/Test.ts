@@ -48,7 +48,11 @@ import * as Validate from "./game/Validate"
 // console.log(Validate.validateGame(path.join(_userDir, ".minecraft"), "1.18.2"))
 
 import * as Mirror from "./game/mirror/Mirror"
+import {convertToBmclapiUri} from "./game/mirror/Bmclapi"
 
-console.log(Mirror.getVersionManifest('wat'))
-console.log(Mirror.getDownloadLink(Mirror.MOJANG, "1.18.2", Mirror.CLIENT))
+async function random(){
+    console.log(filepath)
+    console.log(File.writeFile(filepath,JSON.stringify(convertToBmclapiUri(await Grabber.getJson(Mirror.getVersionManifest(Mirror.BMCLAPI))))))
+}
 
+random()
