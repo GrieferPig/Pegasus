@@ -22,19 +22,24 @@ interface progressCallBack {
     (message: string): void;
 }
 
-export async function download(uri: string, pathTo: string, callback: progressCallBack): Promise<any> {
-    return new Promise<any>(function (resolve) {
+interface downloadResult {
+    noErr: boolean;
+    errReason: string;
+}
+
+export async function download(uri: string, pathTo: string, callback: progressCallBack): Promise<downloadResult>{
+    return new Promise<downloadResult>(resolve => {
         let _parse = uri.split("\/")
         let dest = path.join(pathTo, _parse[_parse.length - 1]);
-        progress(request(uri))
+        progress(request(uri),{delay: 500})
             .on('progress', state => {
                 callback(state)
             })
             .on('error', err => {
-                resolve(err)
+                resolve({noErr: false, errReason: err} as downloadResult)
             })
             .on('end', () => {
-                resolve(SUCCESS)
+                resolve({noErr: true, errReason: ""} as downloadResult)
             })
             .pipe(createWriteStream(dest))
     })

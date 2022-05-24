@@ -26,3 +26,19 @@ function testFile(){
 }
 
 testFile()
+
+import * as Grabber from "./util/Grabber"
+
+async function testGrabber(){
+    console.log(await Grabber.download("https://example.com", _userDir, function (msg) {
+        console.log(msg);
+    }))
+    console.log(await Grabber.download("https://example.com", _userDir, (msg)=>{}, "example.txt"))
+    console.log(File.readFile(path.join(_userDir, "example.com")))
+    console.log(File.readFile(path.join(_userDir, "example.txt")))
+    console.log(await Grabber.getRaw("https://example.com"))
+    File.removeFile(path.join(_userDir, "example.com"))
+    File.removeFile(path.join(_userDir, "example.txt"))
+}
+
+testGrabber()
