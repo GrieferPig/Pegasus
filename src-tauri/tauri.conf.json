@@ -14,7 +14,8 @@
     "allowlist": {
       "all": false,
       "window": {
-        "close": true
+        "close": true,
+        "startDragging": true
       }
     },
     "bundle": {
