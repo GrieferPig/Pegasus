@@ -3,27 +3,20 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 
 // Vuetify
-import { createVuetify } from 'vuetify'
-import {lightTheme, darkTheme} from '@/plugins/themes'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-
-// @ts-ignore
-import { aliases, mdi } from 'vuetify/lib/iconsets/mdi.mjs'
-// @ts-ignore
-import { fa } from 'vuetify/lib/iconsets/fa.mjs'
+import {createVuetify} from 'vuetify'
+import {aliases, mdi} from 'vuetify/iconsets/mdi'
+import {fa} from 'vuetify/lib/iconsets/fa'
+import {darkTheme, lightTheme} from "./themes";
 
 export default createVuetify(
-  // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+    // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
     {
-        components,
-        directives,
         icons: {
             defaultSet: 'mdi',
             aliases,
             sets: {
                 mdi,
-                fa,
+                fa
             }
         },
         theme: {
@@ -32,7 +25,7 @@ export default createVuetify(
                 lightTheme,
                 darkTheme,
             },
-            options:{
+            options: {
                 customProperties: true,
             }
         }

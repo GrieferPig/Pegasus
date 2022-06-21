@@ -33,7 +33,7 @@ export default {
         },
         {
           text: 'Versions',
-          icon: 'mdi-formatlistbulleted',
+          icon: 'mdi-format-list-bulleted',
           selected: false
         },
         {

@@ -14,8 +14,8 @@ export const lightTheme: ThemeDefinition = {
         surface: '#ffffff',
         navdrawer: '#673AB7',
         itembg: '#f6f6f6'
-},
-    variables:{}
+    },
+    variables: {}
 }
 
 // @ts-ignore

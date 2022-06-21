@@ -9,7 +9,7 @@
             <v-app-bar-nav-icon @click.stop="drawer = !drawer" @click="sendNot"></v-app-bar-nav-icon>
           </template>
 
-          <v-app-bar-title class="appTitle">{{ appTitle }}</v-app-bar-title>
+          <v-app-bar-title class="appTitle" data-tauri-drag-region>{{ appTitle }}</v-app-bar-title>
 
           <template v-slot:append>
             <v-btn icon="mdi-dots-vertical"></v-btn>
@@ -44,13 +44,14 @@
 </template>
 
 <script>
-import { markRaw } from 'vue'
+import {markRaw, ref} from 'vue'
 import LaunchPage from './components/LaunchPage.vue'
 import ConfigPage from './components/ConfigPage.vue'
 import SettingsPage from './components/SettingsPage.vue'
 import VersionsPage from "./components/VersionsPage.vue";
 import NavDrawer from './components/NavDrawer.vue'
-import {ref} from 'vue'
+import {appWindow} from "@tauri-apps/api/window";
+
 export default {
   name: 'App',
   components: {
@@ -76,14 +77,11 @@ export default {
     }
   },methods: {
     close() {
-      window.electron.close()
+      appWindow.close()
     },
-    sendNot(){
-      window.electron.sendNotification()
-    },
-    switchPage: function(pageName){
-      var vm = this; //copy of this
-      switch (pageName){
+    switchPage: function(pageName) {
+      let vm = this; //copy of this
+      switch (pageName) {
         case "Launch":
           vm.currentPage = LaunchPage;
           return;
@@ -110,10 +108,11 @@ export default {
 }
 
 .appTitle {
-  display: block;
+  user-select: none;
+  display: flex;
+  justify-content: flex-start;
   text-overflow: ellipsis;
   overflow: hidden;
-  -webkit-app-region: drag;
   padding: 0px !important;
 }
 
@@ -132,8 +131,12 @@ export default {
 }
 
 
-.navDrawerStyle{
+.navDrawerStyle {
   background: rgb(var(--v-theme-accent));
   border-color: transparent
+}
+
+body {
+  overflow: hidden
 }
 </style>

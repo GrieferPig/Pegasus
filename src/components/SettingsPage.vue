@@ -10,7 +10,7 @@
             :disabled="item.disabled"
             :title="item.title"
             :subtitle="item.subtitle"
-            >
+        >
           <template v-slot:default="{ isActive }">
             <v-list-item-avatar right style="height: 40px;">
               <div style="height: 100%; width: 20%">
@@ -29,14 +29,11 @@
 </template>
 
 <script>
-const backend = window.electron.exposeMe;
 
 export default {
   name: "SettingsPage",
   data() {
-    return {
-      category: backend.defaultSettings.guisettings.category
-    }
+    return {}
   }
 }
 </script>
