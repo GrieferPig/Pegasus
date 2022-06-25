@@ -12,8 +12,6 @@ export const lightTheme: ThemeDefinition = {
         success: '#8bc34a',
         background: '#ffffff',
         surface: '#ffffff',
-        navdrawer: '#673AB7',
-        itembg: '#f6f6f6'
     },
     variables: {}
 }
@@ -31,8 +29,6 @@ export const darkTheme: ThemeDefinition = {
         success: '#8bc34a',
         background: '#000000',
         surface: '#000000',
-        navdrawer: '#512DA8',
-        item_bg: '#2a2b2c'
     },
     variables:{}
 }

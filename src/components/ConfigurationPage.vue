@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: "ConfigPage"
+  name: "ConfigurationPage"
 }
 </script>
 
