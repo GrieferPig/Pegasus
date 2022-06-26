@@ -2,7 +2,7 @@
     <div class="background">
         <v-app :theme="theme" style="overflow: scroll !important;">
             <v-main>
-                <AppBar v-model:page-name="currentPage" v-model:theme="theme"/>
+                <AppBar/>
                 <transition mode="out-in" name="fade">
                     <div>
                         <component :is="currentPage+'Page'"></component>
@@ -20,7 +20,7 @@ import ConfigurationPage from './components/ConfigurationPage.vue'
 import SettingsPage from './components/SettingsPage.vue'
 import VersionsPage from "./components/VersionsPage.vue";
 import AboutPage from "./components/AboutPage.vue";
-import AppBar from "./components/AppBar.vue"
+import AppBar from "./components/misc/AppBar.vue"
 
 export default {
     name: 'App',
@@ -32,12 +32,14 @@ export default {
         AboutPage,
         AppBar,
     },
-    data() {
-        return {
-            currentPage: 'Launch',
-            theme: 'lightTheme'
+    computed: {
+        theme() {
+            return this.$store.state.theme
+        },
+        currentPage() {
+            return this.$store.state.currentPage
         }
-    },
+    }
 }
 </script>
 
