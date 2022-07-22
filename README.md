@@ -1,9 +1,9 @@
 # <center>Pegasus Launcher</center>
-#### <center>Lightweight, Blazing fast, Newbie-friendly Minecraft launcher.</center>
+#### <center>Lightweight, Blazingly fast, Newbie-friendly Minecraft launcher.</center>
 
 ***
 
-### LATEST COMMITS ARE IN INDEV BRANCH. SEE [Branches](doc_src/branches.md)
+### LATEST COMMITS ARE IN INDEV BRANCH. See [Branches](doc_src/branches.md)
 
 ## Why this?
 
