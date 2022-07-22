@@ -1,79 +1,82 @@
 # <center>Pegasus Launcher</center>
-#### <center>Featherweight, no, Heavyweight, newbie-friendly Minecraft launcher.</center>
+#### <center>Lightweight, Blazing fast, Newbie-friendly Minecraft launcher.</center>
+
 ***
 
 ### LATEST COMMITS ARE IN INDEV BRANCH. SEE [Branches](doc_src/branches.md)
 
-![UI Preview](./doc_src/img.png "UI Preview")
-
-UI Preview
-
 ## Why this?
-Pegasus Launcher aims for the ultimate compactness (in functionality) and usability, which means, it abandons all the redundant, fancy functionality, while keeping the necessary bits to start Minecraft.
 
-And obviously, you don't need an AI assistant to launch Minecraft if you can do it within one click.
+Pegasus Launcher aims for the ultimate compactness and usability. It downloads and install games, handles mods, creates
+modpacks, that's it.
 
-## Why electron?
-IDK really. Electron has literally no advantages except it's JVM-independent.
+Oh, and you can do a bit of customization.
 
-For how bad is it, imagine a 250MiB Hello World app.
+## Why Tauri/Rust?
+
+Rust is **_the_** future. It's fast, secure, and has many features that you would see in higher-level programming
+languages like Java.
+That's why Tauri became my go-to choice for this project. Not only because it has a crazy small app size compared to
+Electron, but also really fast, thanks to Rust. Though there isn't a large community but hey at least we've got a stable
+version!
 
 ## Well, how usable can it be?
+
 Select a version, click Launch. That’s it. I’m sure you’ll learn in *10 seconds flat*.
 
-No manual configuration is needed, as the launcher has done for you. *Although* you may want to edit that in the configuration panel.
+No manual configuration is needed, as the launcher has done for you. *Although* you might want to edit that in the
+configuration panel.
 
 ## Features?
+
 - Download and launch Minecraft (obviously)
-- Multiple accounts support including Demo/Mojang/Microsoft/Authlib-inject accounts
-- Fast (threaded) download
-- Beautiful and overused UI according to Material Design
-- Set up OpenJDK Runtime if no JRE detected
-- Advanced runtime configuration
-- Log recording
+- Modpack creating, good for modded server admins
+- Multi-account support including Demo/Mojang/Microsoft/Authlib-inject accounts
+- Fast download
+- Beautiful and overused UI using *Material Design*
+- Automatic JRE setup
+- Logs recording
 - i18n support (for later)
 - Bugs. Lots of bugs.
 
 ## Forge/LiteLoader/Optifine Support?
+
 No.
 
 Just kidding. Let’s talk about that later.
 
-## Wait, how about Fabric?
+### fabric?
 
 > Dumb fabric. - Sweetie Belle, S1E18, MLP:FiM
 
 So, duh.
 
-## Okay, sounds pretty good. Download link?
-Okay, then bad news for you. Currently it’s a proof-of-concept. **Hopefully**, this launcher can finish in a feaw month, but LOL I have no guarantee for this project.
+## Okay, sounds pretty good. Where's the download link?
 
-For alternatives(and the inspiration of this project), how about Andy-K-Sparklight’s [Alicorn Launcher](https://github.com/Andy-K-Sparklight/Alicorn).
+Too bad there's none. Currently it’s a proof-of-concept. **Hopefully**, this launcher can finish in a feaw month, but
+LOL I have no guarantee for this project.
+
+For alternatives(and the inspiration of this project), how about
+Andy-K-Sparklight’s [Alicorn Launcher](https://github.com/Andy-K-Sparklight/Alicorn).
 
 ## Sounds cool! I'm in.
-Thanks! Others' contribution is definitely and extremely helpful for this project.  
-Feel free to post issues / pull requests if you find something which can improve.
 
-***
+Thanks! Others' contributions are definitely and extremely helpful for this project. Feel free to post issues / pull
+requests if you find something that can improve.
 
-### Docs.
-- [How to build Pegasus Launcher](doc_src/build.md)
-- [Branches](doc_src/branches.md)
 ***
 
 ###### *Special thanks to these amazing project. Without them, this project would **never** finish.*
-- Electron.js
-- Node.js
-- FontAwesome (although not that awesome on usability)
-- @mdi/js, pretty neat since it has native Vuetify.js support.
+
+- Tauri
+- Rust
 - Vue.js
-- Vuetify.js! Yay!
-- Typescript, for being the worst programming language I've ever dealt with
-- Alicorn Launcher, for *inspiration*
+- Vuetify.js
 
 ***
-Licensed under Mozilla Public License Version 2.0. All rights reserved.  
+Licensed under Mozilla Public License Version 2.0.
+
 "Minecraft", "我的世界" and its logo are affiliates of Mojang AB.  
 "My Little Pony: Friendship is Magic" is affiliated with Hasbro.  
-Not Related to Mojang AB, Hasbro and other organizations.  
+Not Related to Mojang AB, Hasbro and/or other organizations.  
 Other trademarks belong to their owner.
