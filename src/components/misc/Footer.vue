@@ -12,10 +12,20 @@
 
 <script>
 import * as tauri_app from '@tauri-apps/api/app';
+import {ref} from "vue";
 
-const app_name = await tauri_app.getName()
-const tauri_ver = await tauri_app.getTauriVersion()
-const app_ver = await tauri_app.getVersion()
+let app_name = ref("")
+tauri_app.getName().then((value) => {
+    app_name.value = value
+})
+let tauri_ver = ref("")
+tauri_app.getTauriVersion().then((value) => {
+    tauri_ver.value = value
+})
+let app_ver = ref("")
+tauri_app.getVersion().then((value) => {
+    app_ver.value = value
+})
 
 export default {
     name: "Footer",

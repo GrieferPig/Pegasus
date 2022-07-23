@@ -10,12 +10,20 @@ import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 
 library.add(faBars, faSun, faMoon, faXmark)
 
+let last_timeout: NodeJS.Timeout;
+
 const store = createStore({
     state() {
         return {
             theme: 'lightTheme',
             currentPage: 'Launch',
-            currentPageTitle: 'Launch'
+            currentPageTitle: 'Launch',
+
+            snackbar_on: false,
+            snackbar_timeout: 2000,
+            snackbar_text: "",
+            snackbar_subtext: undefined,
+            snackbar_close_text: "Close",
         }
     },
     mutations: {
@@ -27,11 +35,52 @@ const store = createStore({
         },
         switchPageName(store, pageName) {
             store.currentPageTitle = pageName
+        },
+        snackbarTimeout(store, timeout) {
+            store.snackbar_timeout = timeout
+        },
+        snackbarText(store, text) {
+            store.snackbar_text = text
+        },
+        snackbarCloseText(store, closeText) {
+            store.snackbar_close_text = closeText
+        },
+        snackbarSubText(store, subText) {
+            store.snackbar_subtext = subText
+        },
+        snackbarOn(store) {
+            if (last_timeout) {
+                clearTimeout(last_timeout)
+                store.snackbar_on = false;
+            }
+            store.snackbar_on = true;
+            last_timeout = setTimeout(() => {
+                store.snackbar_on = false;
+            }, store.snackbar_timeout)
+        },
+        closeSnackBar(store) {
+            if (last_timeout) {
+                clearTimeout(last_timeout)
+                store.snackbar_on = false;
+            }
         }
     }
 })
 
+const mixin = {
+    methods: {
+        showSnackBar(timeout: Number, text: string, close_text: string, subtext?: string) {
+            this.$store.commit('snackbarTimeout', timeout)
+            this.$store.commit('snackbarText', text)
+            this.$store.commit('snackbarCloseText', close_text)
+            this.$store.commit('snackbarSubText', subtext)
+            this.$store.commit('snackbarOn')
+        }
+    }
+}
+
 createApp(App)
+    .mixin(mixin)
     .use(vuetify)
     .use(store)
     .component('font-awesome-icon', FontAwesomeIcon)

@@ -9,6 +9,11 @@
                     </div>
                 </transition>
                 <Footer/>
+                <GlobalSnackBar/>
+
+                <v-btn v-on:click="showSnackBar(5000, 'This is a snackbar test', 'Toss it', 'Cross my heart and hope to fly, stick a cupcake in my eye!')">
+                    Snackbar Test
+                </v-btn>
             </v-main>
         </v-app>
     </div>
@@ -23,6 +28,7 @@ import ServerListPage from "./components/ServerListPage.vue";
 
 import AppBar from "./components/misc/AppBar.vue"
 import Footer from "./components/misc/Footer.vue"
+import GlobalSnackBar from "./components/misc/GlobalSnackBar.vue";
 import {invoke} from '@tauri-apps/api/tauri'
 
 export default {
@@ -35,6 +41,7 @@ export default {
         SettingsPage,
         VersionsPage,
         AppBar,
+        GlobalSnackBar,
     },
     computed: {
         theme() {
@@ -43,7 +50,7 @@ export default {
         currentPage() {
             return this.$store.state.currentPage
         }
-    }
+    },
 }
 
 invoke('my_custom_command')
