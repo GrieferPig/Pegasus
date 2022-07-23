@@ -24,6 +24,8 @@ const store = createStore({
             snackbar_text: "",
             snackbar_subtext: undefined,
             snackbar_close_text: "Close",
+
+            current_game_folder: ""
         }
     },
     mutations: {
@@ -63,6 +65,9 @@ const store = createStore({
                 clearTimeout(last_timeout)
                 store.snackbar_on = false;
             }
+        },
+        setCurrentGameFolder(store, path) {
+            store.current_game_folder = path
         }
     }
 })

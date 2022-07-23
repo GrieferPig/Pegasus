@@ -25,7 +25,6 @@ import ServerListPage from "./components/ServerListPage.vue";
 import AppBar from "./components/misc/AppBar.vue"
 import Footer from "./components/misc/Footer.vue"
 import GlobalSnackBar from "./components/misc/GlobalSnackBar.vue";
-import {invoke} from '@tauri-apps/api/tauri'
 
 export default {
     name: 'App',
@@ -48,10 +47,6 @@ export default {
         }
     },
 }
-
-invoke('my_custom_command', {
-    path: "C:/Users/whoami/AppData/Roaming/.minecraft/servers.dat"
-}).then((msg) => console.log(msg))
 </script>
 
 <style>
