@@ -10,10 +10,6 @@
                 </transition>
                 <Footer/>
                 <GlobalSnackBar/>
-
-                <v-btn v-on:click="showSnackBar(5000, 'This is a snackbar test', 'Toss it', 'Cross my heart and hope to fly, stick a cupcake in my eye!')">
-                    Snackbar Test
-                </v-btn>
             </v-main>
         </v-app>
     </div>
@@ -53,7 +49,9 @@ export default {
     },
 }
 
-invoke('my_custom_command')
+invoke('my_custom_command', {
+    path: "C:/Users/whoami/AppData/Roaming/.minecraft/servers.dat"
+}).then((msg) => console.log(msg))
 </script>
 
 <style>

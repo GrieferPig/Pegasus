@@ -1624,6 +1624,7 @@ name = "pegasus"
 version = "0.1.0"
 dependencies = [
  "fastnbt",
+ "flate2",
  "serde",
  "serde_json",
  "tauri",

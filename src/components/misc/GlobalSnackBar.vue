@@ -20,6 +20,14 @@
 </template>
 
 <script>
+/**
+ * how to use this
+ *
+ *                 <v-btn v-on:click="showSnackBar(5000, 'This is a snackbar test', 'Toss it', 'Cross my heart and hope to fly, stick a cupcake in my eye!')">
+ *                     Snackbar Test
+ *                 </v-btn>
+ */
+
 import {mapState} from "vuex";
 
 export default {
