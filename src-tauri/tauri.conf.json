@@ -19,13 +19,6 @@
       }
     },
     "bundle": {
-      "active": true,
-      "category": "DeveloperTool",
-      "copyright": "",
-      "deb": {
-        "depends": []
-      },
-      "externalBin": [],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -34,25 +27,15 @@
         "icons/icon.ico"
       ],
       "identifier": "com.grieferpig.pegasus",
-      "longDescription": "",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
-      "resources": [],
-      "shortDescription": "",
+      "longDescription": "Lightweight, Blazingly fast, Newbie-friendly Minecraft launcher.",
+      "shortDescription": "Pegasus Launcher",
       "targets": "all",
       "windows": {
-        "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": ""
+        "webviewInstallMode": {
+          "type": "downloadBootstrapper",
+          "silent": false
+        }
       }
-    },
-    "security": {
-      "csp": null
     },
     "updater": {
       "active": false

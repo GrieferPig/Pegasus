@@ -8,7 +8,7 @@
                         <component :is="currentPage+'Page'"></component>
                     </div>
                 </transition>
-                <AboutPage/>
+                <Footer/>
             </v-main>
         </v-app>
     </div>
@@ -19,17 +19,21 @@ import LaunchPage from './components/LaunchPage.vue'
 import ConfigurationPage from './components/ConfigurationPage.vue'
 import SettingsPage from './components/SettingsPage.vue'
 import VersionsPage from "./components/VersionsPage.vue";
-import AboutPage from "./components/AboutPage.vue";
+import ServerListPage from "./components/ServerListPage.vue";
+
 import AppBar from "./components/misc/AppBar.vue"
+import Footer from "./components/misc/Footer.vue"
+import {invoke} from '@tauri-apps/api/tauri'
 
 export default {
     name: 'App',
     components: {
+        Footer,
         LaunchPage,
         ConfigurationPage,
+        ServerListPage,
         SettingsPage,
         VersionsPage,
-        AboutPage,
         AppBar,
     },
     computed: {
@@ -41,6 +45,8 @@ export default {
         }
     }
 }
+
+invoke('my_custom_command')
 </script>
 
 <style>

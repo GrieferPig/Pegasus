@@ -1,5 +1,13 @@
 <template>
-    {{ app_name }}, version {{ app_ver }},<br/> using Tauri {{ tauri_ver }}
+    <v-footer>
+        <div>
+            <v-divider/>
+            <v-card-text>
+                <strong>{{ app_name }}</strong>, version {{ app_ver }}, running Tauri {{ tauri_ver }}
+                <br/>Made by <a href="https://github.com/GrieferPig">GrieferPig</a> with ❤
+            </v-card-text>
+        </div>
+    </v-footer>
 </template>
 
 <script>
@@ -10,7 +18,7 @@ const tauri_ver = await tauri_app.getTauriVersion()
 const app_ver = await tauri_app.getVersion()
 
 export default {
-    name: "AboutPage",
+    name: "Footer",
     setup() {
         return {
             app_name,

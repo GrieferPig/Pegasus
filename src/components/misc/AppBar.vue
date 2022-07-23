@@ -4,7 +4,7 @@
             <v-app-bar-nav-icon @click="isDrawerOpened = !isDrawerOpened"></v-app-bar-nav-icon>
         </template>
         <v-toolbar-title data-tauri-drag-region>
-            {{ currentPage }}
+            {{ currentPageName }}
         </v-toolbar-title>
         <v-btn icon="mdi-dots-vertical"></v-btn>
     </v-app-bar>
@@ -27,6 +27,9 @@ export default {
     computed: {
         currentPage() {
             return this.$store.state.currentPage
+        },
+        currentPageName() {
+            return this.$store.state.currentPageTitle
         }
     }
 }

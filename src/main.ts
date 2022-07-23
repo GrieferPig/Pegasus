@@ -14,15 +14,19 @@ const store = createStore({
     state() {
         return {
             theme: 'lightTheme',
-            currentPage: 'Launch'
+            currentPage: 'Launch',
+            currentPageTitle: 'Launch'
         }
     },
     mutations: {
         toggleTheme(store) {
             store.theme = store.theme === 'lightTheme' ? 'darkTheme' : 'lightTheme'
         },
-        switchPage(store, pageName) {
-            store.currentPage = pageName
+        switchPage(store, pageid) {
+            store.currentPage = pageid
+        },
+        switchPageName(store, pageName) {
+            store.currentPageTitle = pageName
         }
     }
 })
