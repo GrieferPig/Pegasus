@@ -40,7 +40,10 @@ export default {
     },
     computed: {
         theme() {
-            return this.$store.state.theme
+            if (this.$store.state.conf.launcherSettings.darkMode) {
+                return "darkTheme"
+            }
+            return "lightTheme"
         },
         currentPage() {
             return this.$store.state.currentPage

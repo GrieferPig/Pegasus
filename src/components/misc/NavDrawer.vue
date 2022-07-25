@@ -54,7 +54,7 @@ export default {
             this.$store.commit('switchPageName', pageName.text)
         },
         toggleTheme() {
-            this.$store.commit("toggleTheme")
+            this.$store.commit("toggleDarkMode")
         },
         close() {
             appWindow.close()
@@ -98,7 +98,7 @@ export default {
     },
     computed: {
         icon() {
-            if (this.$store.state.theme === 'darkTheme') {
+            if (this.$store.state.conf.launcherSettings.darkMode) {
                 return 'moon'
             }
             return 'sun'

@@ -36,13 +36,13 @@ export default {
         getServerList
     },
     mounted() {
-        getServerList()
+        setTimeout(getServerList(), 300)
     }
 }
 
 async function getServerList() {
     let list = await invoke('read_server_list', {
-        path: this.$store.state.current_game_folder + "/servers.dat"
+        path: this.$store.state.conf.globalGameSettings.selectedGameDir + "/servers.dat"
     })
     if (list[0].ip === "error") {
         error.value = true;

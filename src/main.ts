@@ -7,15 +7,24 @@ import {loadFonts} from './plugins/webfontloader'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faBars, faMoon, faSun, faXmark} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+import * as SettingMgr from "./utils/SettingMgr";
+import {initConf, readConf, writeConf} from "./utils/SettingMgr";
 
 library.add(faBars, faSun, faMoon, faXmark)
 
 let last_timeout: NodeJS.Timeout;
 
+initConf()
+
+readConf().then((value) => {
+    store.state.conf = value
+})
+
 const store = createStore({
     state() {
         return {
-            theme: 'lightTheme',
+            conf: SettingMgr.DEFAULT_CONF,
+
             currentPage: 'Launch',
             currentPageTitle: 'Launch',
 
@@ -24,13 +33,11 @@ const store = createStore({
             snackbar_text: "",
             snackbar_subtext: undefined,
             snackbar_close_text: "Close",
-
-            current_game_folder: ""
         }
     },
     mutations: {
-        toggleTheme(store) {
-            store.theme = store.theme === 'lightTheme' ? 'darkTheme' : 'lightTheme'
+        toggleDarkMode(store) {
+            store.conf.launcherSettings.darkMode = !store.conf.launcherSettings.darkMode
         },
         switchPage(store, pageid) {
             store.currentPage = pageid
@@ -66,8 +73,9 @@ const store = createStore({
                 store.snackbar_on = false;
             }
         },
-        setCurrentGameFolder(store, path) {
-            store.current_game_folder = path
+        writeConf(store, conf: SettingStructure.RootObject) {
+            store.conf = conf
+            writeConf(conf)
         }
     }
 })

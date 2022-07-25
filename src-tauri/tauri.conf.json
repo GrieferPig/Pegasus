@@ -23,6 +23,16 @@
       },
       "path": {
         "all": true
+      },
+      "fs": {
+        "all": true,
+        "scope": [
+          "$DATA/.minecraft/*",
+          "$DATA/.pegasus/*",
+          "$DATA/.pegasus",
+          "$APP/*",
+          "$TEMP/.pegasus/*"
+        ]
       }
     },
     "bundle": {

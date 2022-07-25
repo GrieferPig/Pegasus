@@ -14,7 +14,7 @@ export default {
     },
     computed: {
         currentGameFolder() {
-            return this.$store.state.current_game_folder
+            return this.$store.state.conf.globalGameSettings.selectedGameDir
         }
     },
     methods: {
@@ -27,9 +27,10 @@ export default {
             if (selected === null) {
                 await message('Game Folder Not Selected', {title: 'Pegasus', type: 'error'});
             } else {
-                this.$store.commit('setCurrentGameFolder', selected)
+
+                this.$store.state.conf.globalGameSettings.selectedGameDir = selected
             }
-            console.log(this.$store.state.current_game_folder)
+            console.log(this.$store.state.conf.globalGameSettings.selectedGameDir)
         }
     }
 }
