@@ -6,7 +6,6 @@ const CONF_FOLDER = '.pegasus'
 const CONF_NAME = 'conf.json'
 
 export async function initConf() {
-
     await createDir(CONF_FOLDER, {dir: BaseDirectory.Data})
     await writeConf(DEFAULT_CONF)
 }
