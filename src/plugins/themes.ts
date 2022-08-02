@@ -1,8 +1,7 @@
-import {ThemeDefinition} from 'vuetify'
-// @ts-ignore
-export const lightTheme: ThemeDefinition = {
+import { ThemeDefinition } from 'vuetify'
+export const defaultLightTheme: ThemeDefinition = {
     dark: false,
-    colors:{
+    colors: {
         primary: '#0097A7',
         secondary: '#009688',
         accent: '#FFFFFF',
@@ -16,10 +15,9 @@ export const lightTheme: ThemeDefinition = {
     variables: {}
 }
 
-// @ts-ignore
-export const darkTheme: ThemeDefinition = {
+export const defaultDarkTheme: ThemeDefinition = {
     dark: true,
-    colors:{
+    colors: {
         primary: '#303F9F',
         secondary: '#00796B',
         accent: '#512DA8',
@@ -30,5 +28,5 @@ export const darkTheme: ThemeDefinition = {
         background: '#000000',
         surface: '#000000',
     },
-    variables:{}
+    variables: {}
 }

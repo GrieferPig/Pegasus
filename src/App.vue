@@ -2,14 +2,15 @@
     <div class="background">
         <v-app :theme="theme" style="overflow: scroll !important;">
             <v-main>
-                <AppBar/>
+                <AppBar />
                 <transition mode="out-in" name="fade">
                     <div>
-                        <component :is="currentPage+'Page'"></component>
+                        <component :is="currentPage + 'Page'"></component>
                     </div>
                 </transition>
-                <Footer/>
-                <GlobalSnackBar/>
+                <v-btn @click="testModifyConf">test me</v-btn>
+                <Footer />
+                <GlobalSnackBar />
             </v-main>
         </v-app>
     </div>
@@ -41,20 +42,40 @@ export default {
     computed: {
         theme() {
             if (this.$store.state.conf.launcherSettings.darkMode) {
-                return "darkTheme"
+                return "default" + "DarkTheme"
             }
-            return "lightTheme"
+            return "default" + "LightTheme"
         },
         currentPage() {
             return this.$store.state.currentPage
+        },
+    },
+    methods: {
+        testModifyConf() {
+            console.log("App: testModifyConf")
+            if (this.conf.launcherSettings.lang === 'po-eq') {
+                this.conf.launcherSettings.lang = 'zh-cn'
+                return;
+            }
+            this.conf.launcherSettings.lang = 'po-eq'
         }
     },
+    watch: {
+        '$store.state.conf': {
+            handler(newConf) {
+                console.log("mixin: watch: conf handler")
+                this.writeConf(newConf)
+            },
+            deep: true
+        }
+    }
 }
 </script>
 
 <style>
 ::-webkit-scrollbar {
-    display: none; /* hide all the nasty scrollbar */
+    display: none;
+    /* hide all the nasty scrollbar */
 }
 
 .background {

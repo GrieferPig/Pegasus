@@ -1,5 +1,4 @@
 declare module SettingStructure {
-
     export interface GlobalGameSettings {
         gameDirs: string[];
         selectedGameDir: string;
