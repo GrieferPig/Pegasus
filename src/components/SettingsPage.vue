@@ -7,6 +7,8 @@
 import {message, open} from '@tauri-apps/api/dialog';
 import {appDir} from '@tauri-apps/api/path';
 
+import {readConf, writeConf} from "../utils/SettingMgr";
+
 export default {
     name: "SettingsPage",
     data() {
@@ -34,6 +36,11 @@ export default {
         }
     }
 }
+
+async function oops() {
+    console.log(await readConf())
+}
+oops()
 </script>
 
 <style scoped>

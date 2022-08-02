@@ -1,15 +1,13 @@
 <template>
-  hi
+    hi
 </template>
 
 <script>
 
 export default {
-  name: 'LaunchPage',
-  data(){
-    return{
-
+    name: 'LaunchPage',
+    data() {
+        return {}
     }
-  }
 }
 </script>

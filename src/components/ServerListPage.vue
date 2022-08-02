@@ -1,16 +1,16 @@
 <template>
     <v-btn @click="getServerList">Read server list</v-btn>
     <v-list
-            subheader
-            two-line
+        subheader
+        two-line
     >
         <v-list-subheader inset="">Servers</v-list-subheader>
 
         <v-list-item
-                v-for="server in server_list"
-                :key="server.name"
-                :subtitle="server.ip"
-                :title="server.name">
+            v-for="server in server_list"
+            :key="server.name"
+            :subtitle="server.ip"
+            :title="server.name">
         </v-list-item>
     </v-list>
 </template>

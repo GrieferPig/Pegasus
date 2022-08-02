@@ -1,112 +1,120 @@
 use std::fs;
-use std::io::{Error, Read, Write};
+use std::io::{Read, Write};
 
 use serde::{Deserialize, Serialize};
 use tauri::api::path::data_dir;
 
 const CONF_NAME: &str = "conf.json";
 
-const DEF_CONF: SettingStruct = SettingStruct {
-    version: "",
-    global_game_settings: GlobalGameSettings {
-        game_dirs: Vec::new(),
-        selected_game_dir: "",
-        mem_size: 1024,
-        vm_args: String::new(),
-        logging: true,
-        window_x: 864,
-        window_y: 480,
-        fullscreen: false,
-        java_exe_path: "",
-        lwjgl_path: "",
-    },
-    launcher_settings: LauncherSettings {
-        theme: "default",
-        dark_mode: false,
-        lang: "zh-cn",
-        download_mirror: "mojang",
-    },
-    accounts: Accounts {
-        selected_account_uuid: "",
-        accounts: Vec::new(),
-    },
-};
-
-pub fn create_def_conf() -> Result<bool, Error> {
+pub fn create_def_conf() -> bool {
+    let def_conf: SettingStruct = SettingStruct {
+        version: String::from(""),
+        global_game_settings: GlobalGameSettings {
+            game_dirs: Vec::new(),
+            selected_game_dir: String::from(""),
+            mem_size: 1024,
+            vm_args: String::new(),
+            logging: true,
+            window_x: 864,
+            window_y: 480,
+            fullscreen: false,
+            java_exe_path: String::from(""),
+            lwjgl_path: String::from(""),
+        },
+        launcher_settings: LauncherSettings {
+            theme: String::from("default"),
+            dark_mode: false,
+            lang: String::from("zh-cn"),
+            download_mirror: String::from("mojang"),
+        },
+        accounts: Accounts {
+            selected_account_uuid: String::from(""),
+            accounts: Vec::new(),
+        },
+    };
     let mut conf = data_dir().unwrap();
     conf.push(".pegasus");
-    fs::create_dir_all(&conf)?;
+    if fs::create_dir_all(&conf).is_err() {
+        return false;
+    }
     conf.push(CONF_NAME);
-    let mut conf = fs::File::create(&conf)?;
-    write!(conf, "{}", serde_json::to_string(&DEF_CONF).unwrap()).expect("Failed to write to conf file");
-    Ok(true)
+    if !fs::try_exists(&conf).unwrap() {
+        let mut conf = fs::File::create(&conf).unwrap();
+        write!(conf, "{}", serde_json::to_string(&def_conf).unwrap())
+            .expect("Failed to write to conf file");
+        true
+    } else {
+        false
+    }
 }
 
-pub fn write_conf(conf: &SettingStruct) -> Result<bool, Error> {
+#[tauri::command]
+pub fn write_conf(conf: SettingStruct) -> bool {
     let mut conf_path = data_dir().unwrap();
     conf_path.push(".pegasus");
     conf_path.push(CONF_NAME);
-    let mut file = fs::File::open(conf_path)?;
-    write!(file, "{}", serde_json::to_string(&conf).unwrap()).expect("Failed to write to conf file");
-    Ok(true)
+    let mut file = fs::File::create(conf_path).unwrap();
+    write!(file, "{}", serde_json::to_string(&conf).unwrap())
+        .expect("Failed to write to conf file");
+    true
 }
 
-pub fn read_conf<'a>() -> Result<SettingStruct, Error> {
+#[tauri::command]
+pub fn read_conf() -> SettingStruct {
     let mut conf_path = data_dir().unwrap();
     conf_path.push(".pegasus");
     conf_path.push(CONF_NAME);
-    let mut file = fs::File::open(conf_path)?;
+    let mut file = fs::File::open(conf_path).unwrap();
     let mut buf = String::new();
-    file.read_to_string(&mut buf);
-    let buf: &'a str = buf.as_str();
-    let conf = serde_json::from_str(buf).unwrap();
-    Ok(conf)
+    file.read_to_string(&mut buf).expect("TODO: panic message");
+    let conf: SettingStruct = serde_json::from_str(&buf).unwrap();
+    conf
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct SettingStruct {
-    version: &'static str,
-    global_game_settings: GlobalGameSettings,
-    launcher_settings: LauncherSettings,
-    accounts: Accounts,
+    pub version: String,
+    pub global_game_settings: GlobalGameSettings,
+    pub launcher_settings: LauncherSettings,
+    pub accounts: Accounts,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct GlobalGameSettings {
-    game_dirs: Vec<&'static str>,
-    selected_game_dir: &'static str,
-    mem_size: i32,
-    vm_args: String,
-    logging: bool,
-    window_x: i32,
-    window_y: i32,
-    fullscreen: bool,
-    java_exe_path: &'static str,
-    lwjgl_path: &'static str,
+    pub game_dirs: Vec<String>,
+    pub selected_game_dir: String,
+    pub mem_size: i32,
+    pub vm_args: String,
+    pub logging: bool,
+    pub window_x: i32,
+    pub window_y: i32,
+    pub fullscreen: bool,
+    pub java_exe_path: String,
+    pub lwjgl_path: String,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Accounts {
-    selected_account_uuid: &'static str,
-    accounts: Vec<Account>,
+    pub selected_account_uuid: String,
+    pub accounts: Vec<Account>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Account {
-    username: &'static str,
-    password_hashed: &'static str,
-    r#type: i8,
+    pub username: String,
+    pub password_hashed: String,
+    pub r#type: i8,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct LauncherSettings {
-    theme: &'static str,
-    dark_mode: bool,
-    lang: &'static str,
-    download_mirror: &'static str,
+    pub theme: String,
+    pub dark_mode: bool,
+    pub lang: String,
+    pub download_mirror: String,
 }
