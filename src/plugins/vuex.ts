@@ -60,7 +60,7 @@ export function create(conf_value: SettingStructure.RootObject) {
             writeConfInVuex(store, conf: SettingStructure.RootObject) {
                 store.conf = conf
                 writeConf(conf)
-                console.log("vuex: writeConf: Wrote")
+                // console.log("vuex: writeConf: Wrote")
             }
         }
     })

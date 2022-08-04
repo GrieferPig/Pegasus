@@ -30,3 +30,5 @@ export const defaultDarkTheme: ThemeDefinition = {
     },
     variables: {}
 }
+
+export const THEMES_LOCALIZED: String[][] = [['default', 'Default Theme']];

@@ -8,7 +8,7 @@
                         <component :is="currentPage + 'Page'"></component>
                     </div>
                 </transition>
-                <v-btn @click="testModifyConf">test me</v-btn>
+                <!-- <v-btn @click="testModifyConf">test me</v-btn> -->
                 <Footer />
                 <GlobalSnackBar />
             </v-main>
@@ -16,7 +16,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import LaunchPage from './components/LaunchPage.vue'
 import ConfigurationPage from './components/ConfigurationPage.vue'
 import SettingsPage from './components/SettingsPage.vue'
@@ -42,28 +42,28 @@ export default {
     computed: {
         theme() {
             if (this.$store.state.conf.launcherSettings.darkMode) {
-                return "default" + "DarkTheme"
+                return this.$store.state.conf.launcherSettings.theme + "DarkTheme"
             }
-            return "default" + "LightTheme"
+            return this.$store.state.conf.launcherSettings.theme + "LightTheme"
         },
-        currentPage() {
+        currentPage(): String {
             return this.$store.state.currentPage
         },
     },
     methods: {
-        testModifyConf() {
-            console.log("App: testModifyConf")
-            if (this.conf.launcherSettings.lang === 'po-eq') {
-                this.conf.launcherSettings.lang = 'zh-cn'
-                return;
-            }
-            this.conf.launcherSettings.lang = 'po-eq'
-        }
+        // testModifyConf() {
+        //     // console.log("App: testModifyConf")
+        //     if (this.conf.launcherSettings.lang === 'po-eq') {
+        //         this.conf.launcherSettings.lang = 'zh-cn'
+        //         return;
+        //     }
+        //     this.conf.launcherSettings.lang = 'po-eq'
+        // }
     },
     watch: {
         '$store.state.conf': {
-            handler(newConf) {
-                console.log("mixin: watch: conf handler")
+            handler(newConf: SettingStructure.RootObject) {
+                // sconsole.log("mixin: watch: conf handler")
                 this.writeConf(newConf)
             },
             deep: true

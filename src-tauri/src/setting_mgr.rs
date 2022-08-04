@@ -7,11 +7,14 @@ use tauri::api::path::data_dir;
 const CONF_NAME: &str = "conf.json";
 
 pub fn create_def_conf() -> bool {
+    let mut mc_folder = data_dir().unwrap();
+    mc_folder.push(".minecraft/");
+    let mc_folder = String::from(mc_folder.to_str().unwrap());
     let def_conf: SettingStruct = SettingStruct {
         version: String::from(""),
         global_game_settings: GlobalGameSettings {
-            game_dirs: Vec::new(),
-            selected_game_dir: String::from(""),
+            game_dirs: vec![mc_folder.clone(), String::from(".")],
+            selected_game_dir: mc_folder.clone(),
             mem_size: 1024,
             vm_args: String::new(),
             logging: true,

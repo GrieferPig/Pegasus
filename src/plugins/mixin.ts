@@ -8,7 +8,7 @@ export const mixin = {
             this.$store.commit('snackbarOn')
         },
         writeConf(conf: SettingStructure.RootObject) {
-            console.log("mixin: writeconf")
+            // console.log("mixin: writeconf")
             this.$store.commit('writeConfInVuex', conf)
         }
     }

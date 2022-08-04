@@ -1,4 +1,4 @@
-import { createApp, VueElement } from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { readConf } from "./utils/SettingMgr";
 import { create } from './plugins/vuex'
 import { mixin } from './plugins/mixin'
-import { app } from '@tauri-apps/api'
 
 library.add(faBars, faSun, faMoon, faXmark)
 

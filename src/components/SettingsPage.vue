@@ -4,19 +4,20 @@
 </template>
 
 <script>
-import {message, open} from '@tauri-apps/api/dialog';
-import {appDir} from '@tauri-apps/api/path';
+import { message, open } from '@tauri-apps/api/dialog';
+import { appDir } from '@tauri-apps/api/path';
 
-import {readConf, writeConf} from "../utils/SettingMgr";
+import { readConf, writeConf } from "../utils/SettingMgr";
 
 export default {
     name: "SettingsPage",
     data() {
-        return {}
+        return {
+        }
     },
     computed: {
         currentGameFolder() {
-            return this.$store.state.conf.globalGameSettings.selectedGameDir
+            return this.conf.globalGameSettings.selectedGameDir
         }
     },
     methods: {
@@ -27,12 +28,11 @@ export default {
                 defaultPath: await appDir(),
             });
             if (selected === null) {
-                await message('Game Folder Not Selected', {title: 'Pegasus', type: 'error'});
+                await message('Game Folder Not Selected', { title: 'Pegasus', type: 'error' });
             } else {
-
-                this.$store.state.conf.globalGameSettings.selectedGameDir = selected
+                this.conf.globalGameSettings.selectedGameDir = selected
             }
-            console.log(this.$store.state.conf.globalGameSettings.selectedGameDir)
+            console.log(this.conf.globalGameSettings.selectedGameDir)
         }
     }
 }
