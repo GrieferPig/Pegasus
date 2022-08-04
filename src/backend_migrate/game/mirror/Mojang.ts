@@ -1,1 +1,0 @@
-export const VersionManifestPath: string = "http://launchermeta.mojang.com/mc/game/version_manifest.json"

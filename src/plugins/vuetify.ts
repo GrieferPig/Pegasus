@@ -4,35 +4,28 @@ import 'vuetify/styles'
 
 // Vuetify
 import { createVuetify } from 'vuetify'
-import {lightTheme, darkTheme} from '@/plugins/themes'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-
-// @ts-ignore
-import { aliases, mdi } from 'vuetify/lib/iconsets/mdi.mjs'
-// @ts-ignore
-import { fa } from 'vuetify/lib/iconsets/fa.mjs'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import { fa } from 'vuetify/lib/iconsets/fa'
+import { defaultDarkTheme, defaultLightTheme } from "./themes";
 
 export default createVuetify(
-  // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+    // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
     {
-        components,
-        directives,
         icons: {
             defaultSet: 'mdi',
             aliases,
             sets: {
                 mdi,
-                fa,
+                fa
             }
         },
         theme: {
-            defaultTheme: 'lightTheme',
+            defaultTheme: 'defaultLightTheme',
             themes: {
-                lightTheme,
-                darkTheme,
+                defaultLightTheme,
+                defaultDarkTheme,
             },
-            options:{
+            options: {
                 customProperties: true,
             }
         }

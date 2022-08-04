@@ -1,7 +1,3 @@
-# Indev branch
-***
-Code at this phase is nightly updated and are unstable and untested.
+# You are now on Indev branch.
 
-For more information about branch splitting, see [Branches](https://github.com/GrieferPig/Pegasus/blob/master/doc_src/branches.md)
-
-干你妈的vue 谁用谁**
+If you don't know how you get here or you can't find your way back home, click [me](oops)

@@ -1,139 +1,96 @@
 <template>
-  <div class="background">
-    <v-app :theme="theme" style="overflow: scroll !important;">
-      <v-main>
-        <v-app-bar
-            color="primary"
-        >
-          <template v-slot:prepend>
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer" @click="sendNot"></v-app-bar-nav-icon>
-          </template>
-
-          <v-app-bar-title class="appTitle">{{ appTitle }}</v-app-bar-title>
-
-          <template v-slot:append>
-            <v-btn icon="mdi-dots-vertical"></v-btn>
-          </template>
-        </v-app-bar>
-        <v-navigation-drawer
-            v-model="drawer"
-            temporaryn
-            class="navDrawerStyle">
-          <template v-slot:append>
-            <v-divider/>
-            <div style="float:right;margin-bottom: 5px;margin-right: 5px">
-              <v-btn color="transparent" icon flat @click="close" class="closeWinSwitch">
-                <v-icon icon="mdi-close" />
-              </v-btn>
-              <v-btn color="transparent" icon flat @click="toggleTheme" class="toggleThemeSwitch">
-                <font-awesome-icon v-if="theme === 'darkTheme'" icon="moon"/>
-                <font-awesome-icon v-if="theme === 'lightTheme'" icon="sun"/>
-              </v-btn>
-            </div>
-          </template>
-          <NavDrawer></NavDrawer>
-        </v-navigation-drawer>
-        <transition mode="out-in">
-          <div style="overflow: scroll;">
-            <component :is="currentPage"></component>
-          </div>
-        </transition>
-      </v-main>
-    </v-app>
-  </div>
+    <div class="background">
+        <v-app :theme="theme" style="overflow: scroll !important;">
+            <v-main>
+                <AppBar />
+                <transition mode="out-in" name="fade">
+                    <div>
+                        <component :is="currentPage + 'Page'"></component>
+                    </div>
+                </transition>
+                <!-- <v-btn @click="testModifyConf">test me</v-btn> -->
+                <Footer />
+                <GlobalSnackBar />
+            </v-main>
+        </v-app>
+    </div>
 </template>
 
-<script>
-import { markRaw } from 'vue'
+<script lang="ts">
 import LaunchPage from './components/LaunchPage.vue'
-import ConfigPage from './components/ConfigPage.vue'
+import ConfigurationPage from './components/ConfigurationPage.vue'
 import SettingsPage from './components/SettingsPage.vue'
 import VersionsPage from "./components/VersionsPage.vue";
-import NavDrawer from './components/NavDrawer.vue'
-import {ref} from 'vue'
+import ServerListPage from "./components/ServerListPage.vue";
+
+import AppBar from "./components/misc/AppBar.vue"
+import Footer from "./components/misc/Footer.vue"
+import GlobalSnackBar from "./components/misc/GlobalSnackBar.vue";
+
 export default {
-  name: 'App',
-  components: {
-    LaunchPage: markRaw(LaunchPage),
-    ConfigPage: markRaw(ConfigPage),
-    SettingsPage: markRaw(SettingsPage),
-    VersionsPage: markRaw(VersionsPage),
-    NavDrawer
-  },
-  data() {
-    return {
-      appTitle: 'Launch',
-      hover: false,
-      drawer: false,
-      currentPage: 'LaunchPage',
-    }
-  },
-  setup() {
-    const theme = ref('lightTheme')
-    return {
-      theme,
-      toggleTheme: () => theme.value = theme.value === 'lightTheme' ? 'darkTheme' : 'lightTheme',
-    }
-  },methods: {
-    close() {
-      window.electron.close()
+    name: 'App',
+    components: {
+        Footer,
+        LaunchPage,
+        ConfigurationPage,
+        ServerListPage,
+        SettingsPage,
+        VersionsPage,
+        AppBar,
+        GlobalSnackBar,
     },
-    sendNot(){
-      window.electron.sendNotification()
+    computed: {
+        theme() {
+            if (this.$store.state.conf.launcherSettings.darkMode) {
+                return this.$store.state.conf.launcherSettings.theme + "DarkTheme"
+            }
+            return this.$store.state.conf.launcherSettings.theme + "LightTheme"
+        },
+        currentPage(): String {
+            return this.$store.state.currentPage
+        },
     },
-    switchPage: function(pageName){
-      var vm = this; //copy of this
-      switch (pageName){
-        case "Launch":
-          vm.currentPage = LaunchPage;
-          return;
-        case "Configuration":
-          vm.currentPage = ConfigPage;
-          return;
-        case "Settings":
-          vm.currentPage = SettingsPage;
-          return;
-        case "Versions":
-          vm.currentPage = VersionsPage;
-          return;
-        default:
-          return;
-      }
+    methods: {
+        // testModifyConf() {
+        //     // console.log("App: testModifyConf")
+        //     if (this.conf.launcherSettings.lang === 'po-eq') {
+        //         this.conf.launcherSettings.lang = 'zh-cn'
+        //         return;
+        //     }
+        //     this.conf.launcherSettings.lang = 'po-eq'
+        // }
+    },
+    watch: {
+        '$store.state.conf': {
+            handler(newConf: SettingStructure.RootObject) {
+                // sconsole.log("mixin: watch: conf handler")
+                this.writeConf(newConf)
+            },
+            deep: true
+        }
     }
-  }
 }
 </script>
 
 <style>
 ::-webkit-scrollbar {
-  display: none; /* hide all the nasty scrollbar */
+    display: none;
+    /* hide all the nasty scrollbar */
 }
-
-.appTitle {
-  display: block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  -webkit-app-region: drag;
-  padding: 0px !important;
-}
-
-.v-toolbar-title {
-  padding: 6px 5px; /*why you need a 20px left padding*/
-}
-
-
 
 .background {
-  height: 600px;
-  width: 350px;
-  border-radius: 10px;
-  display: block;
-  user-select: none;
+    height: 600px;
+    width: 350px;
+    border-radius: 10px;
+    display: block;
+    user-select: none;
 }
 
+body {
+    overflow: hidden
+}
 
-.navDrawerStyle{
-  background: rgb(var(--v-theme-accent));
-  border-color: transparent
+.v-toolbar-title__placeholder {
+    pointer-events: none;
 }
 </style>
