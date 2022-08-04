@@ -69,15 +69,6 @@ export async function getRaw(uri: string): Promise<string> {
     })
 }
 
-export async function getJson(uri: string): Promise<JSON>{
-    let _fetched = await getRaw(uri);
-    if(_fetched != ""){
-        return JSON.parse(_fetched);
-    }else{
-        return JSON.parse('{}');
-    }
-}
-
 /**
  * lets forget this portion of code...
  *
