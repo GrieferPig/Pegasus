@@ -1,10 +1,13 @@
 <template>
-  <h1>Launch</h1>
+    hi
 </template>
 
 <script>
-export default {
 
-  name: 'LaunchPage'
+export default {
+    name: 'LaunchPage',
+    data() {
+        return {}
+    }
 }
 </script>

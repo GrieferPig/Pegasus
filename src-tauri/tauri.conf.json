@@ -1,0 +1,72 @@
+{
+  "$schema": "..\\node_modules/@tauri-apps/cli\\schema.json",
+  "build": {
+    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run dev",
+    "devPath": "http://localhost:3000",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "Pegasus",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "window": {
+        "close": true,
+        "startDragging": true
+      },
+      "dialog": {
+        "open": true,
+        "message": true
+      },
+      "path": {
+        "all": true
+      },
+      "fs": {
+        "all": true,
+        "scope": [
+          "$DATA/.minecraft/*",
+          "$DATA/.pegasus/*",
+          "$DATA/.pegasus",
+          "$APP/*",
+          "$TEMP/.pegasus/*"
+        ]
+      }
+    },
+    "bundle": {
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "com.grieferpig.pegasus",
+      "longDescription": "Lightweight, Blazingly fast, Newbie-friendly Minecraft launcher.",
+      "shortDescription": "Pegasus Launcher",
+      "targets": "all",
+      "windows": {
+        "webviewInstallMode": {
+          "type": "downloadBootstrapper",
+          "silent": false
+        }
+      }
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 600,
+        "width": 350,
+        "resizable": false,
+        "title": "Pegasus Launcher",
+        "decorations": false,
+        "center": true
+      }
+    ]
+  }
+}
