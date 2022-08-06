@@ -10,7 +10,7 @@ export function create(conf_value: SettingStructure.RootObject) {
                 conf: conf_value,
 
                 currentPage: 'Launch',
-                currentPageTitle: 'Launch',
+                currentPageTitle: 'pages.Launch.title',
 
                 snackbar_on: false,
                 snackbar_timeout: 2000,

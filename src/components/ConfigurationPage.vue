@@ -1,5 +1,5 @@
 <template>
-    <h1>Config</h1>
+    <h1></h1>
 
 </template>
 
@@ -10,5 +10,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

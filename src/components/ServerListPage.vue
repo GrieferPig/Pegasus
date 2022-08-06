@@ -4,40 +4,49 @@
         <v-btn @click="getServerList" class="op-btns" icon="mdi-refresh" size="large" />
     </v-btn-group>
     <v-list subheader two-line>
-        <v-list-subheader inset="">Servers</v-list-subheader>
-        <v-list-item v-if="!error" v-for="(server, index) in server_list" :key="server.name" :subtitle="server.ip"
-            :title="server.name">
-            <template v-slot=append>
-                <v-btn-group>
-                    <v-btn icon="mdi-delete" @click="deleteServer(index)"></v-btn>
-                    <v-btn icon="mdi-pencil"></v-btn>
-                </v-btn-group>
-            </template>
-        </v-list-item>
-        <v-label v-if="error">Cannot read server list file: <br />{{ error_reason }}</v-label>
+        <v-list-subheader inset="">{{ $t('pages.Servers.title') }}</v-list-subheader>
+        <div :v-if="!isServerListEmpty">
+            <v-list-item v-if="!error" v-for="(server, index) in server_list" :key="server.name" :subtitle="server.ip"
+                :title="server.name">
+                <template v-slot=append>
+                    <v-btn-group>
+                        <v-btn icon="mdi-delete" @click="deleteServer(index)"></v-btn>
+                        <v-btn icon="mdi-pencil"></v-btn>
+                    </v-btn-group>
+                </template>
+            </v-list-item>
+        </div>
+        <v-label v-if="error">{{ $t("pages.Servers.errors.error") }} <br />{{
+                $t("pages.Servers.title.errors.reasons." + error_reason)
+        }}</v-label>
+        <v-label v-if="isServerListEmpty">{{ $t("pages.Servers.empty_server_list_1") }}<br />{{
+                $t("pages.Servers.empty_server_list_2")
+        }}</v-label>
     </v-list>
 
     <v-dialog v-model="dialog" persistent>
         <v-card>
-            <v-card-title v-if="dialog_edit">Edit Server</v-card-title>
-            <v-card-title v-else>Add New Server</v-card-title>
+            <v-card-title v-if="dialog_edit">{{ $t("pages.Servers.dialog.edit_server") }}</v-card-title>
+            <v-card-title v-else>{{ $t("pages.Servers.dialog.add_new_server") }}</v-card-title>
             <v-card-item>
                 <v-form ref="form" v-model="valid" lazy-validation style="width: 250px">
-                    <v-text-field v-model="name" label="Name" required variant="underlined" :rules="nameRules">
+                    <v-text-field v-model="name" :label="$t('pages.Servers.dialog.name')" required variant="underlined"
+                        :rules="nameRules">
                     </v-text-field>
-                    <v-text-field v-model="server_ip" label="Server IP" required variant="underlined"
-                        :rules="serverIpRules"></v-text-field>
-                    <v-text-field v-model="server_port" label="Port" required variant="underlined"
-                        :rules="serverPortRules">
+                    <v-text-field v-model="server_ip" :label="$t('pages.Servers.dialog.server_ip')" required
+                        variant="underlined" :rules="serverIpRules"></v-text-field>
+                    <v-text-field v-model="server_port" :label="$t('pages.Servers.dialog.port')" required
+                        variant="underlined" :rules="serverPortRules">
                     </v-text-field>
                 </v-form>
             </v-card-item>
             <v-card-actions>
-                <v-btn color="primary" @click="dialog = false">Close</v-btn>
-                <v-btn color="primary" @click="addServer">{{ form_action }}</v-btn>
+                <v-btn color="primary" @click="dialog = false">{{ $t("pages.Servers.dialog.action_close") }}</v-btn>
+                <v-btn color="primary" @click="addServer">{{ $t(form_action) }}</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
+    <v-btn @click="dbg">is empty</v-btn>
 </template>
 
 <script>
@@ -49,7 +58,7 @@ export default {
         return {
             error: false,
             error_reason: "",
-            server_list: [{ icon: null, ip: "", name: "" }],
+            server_list: [],
 
             dialog: false,
             dialog_edit: false,
@@ -60,20 +69,20 @@ export default {
 
             valid: false,
             nameRules: [
-                v => !!v || 'Required',
-                v => /^[\da-zA-Z\~\!\@\#\$\%\^\&\*\(\)\_\+\{\}\|\:\"\<\>\?\`\-\=\[\]\\\;\'\,\.\/]+$/.test(v) || 'Name can only be digits, letters, and a range of symbols',
-                v => /^.{0,32}$/.test(v) || 'Name is too long'
+                v => !!v || this.d('required'),
+                v => /^[\da-zA-Z\~\!\@\#\$\%\^\&\*\(\)\_\+\{\}\|\:\"\<\>\?\`\-\=\[\]\\\;\'\,\.\/]+$/.test(v) || this.d('name.format_error'),
+                v => /^.{0,32}$/.test(v) || this.d('name.too_long')
             ],
             serverIpRules: [
-                v => !!v || 'Required',
-                v => v.split(":").length - 1 !== 1 || 'Port number should be filled in "Port" field',
-                v => /^[\da-zA-Z:\-_.]+$/.test(v) || 'Invalid domain/IP address',
-                v => v.split('http').length - 1 !== 1 || 'Remove "http(s)://""'
+                v => !!v || this.d('required'),
+                v => v.split(":").length - 1 !== 1 || this.d('ip.wrong_port_field'),
+                v => /^[\da-zA-Z:\-_.]+$/.test(v) || this.d('ip.invalid_ip'),
+                v => v.split('http').length - 1 !== 1 || this.d('ip.remove_http')
             ],
             serverPortRules: [
-                v => !!v || 'Required',
-                v => /\d/.test(v) || 'Must be all numbers',
-                v => /^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$/.test(v) || 'Port number out of range (0-65535)'
+                v => !!v || this.d('required'),
+                v => /\d/.test(v) || this.d('port.must_be_numbers'),
+                v => /^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$/.test(v) || this.d('port.out_of_range')
             ],
             form_action: ""
         }
@@ -84,8 +93,10 @@ export default {
                 path: this.conf.globalGameSettings.selectedGameDir + "/servers.dat"
             })
             console.log(list)
-            // console.log(list)
-            if (list[0].ip === "error") {
+            // console.log(list) 
+            if (list.length === 0) {
+                // uh what should i do here
+            } else if (list[0].ip === "error") {
                 this.error = true;
                 this.error_reason = list[0].name;
                 return null;
@@ -94,12 +105,12 @@ export default {
             this.server_list = list
         },
         openAddServerDialog() {
-            this.name = "",
-                this.server_ip = "",
-                this.dialog = true;
+            this.name = "";
+            this.server_ip = "";
+            this.dialog = true;
             this.dialog_edit = false;
             this.server_port = 25565
-            this.form_action = "Add"
+            this.form_action = "pages.Servers.dialog.action_add"
         },
         async addServer() {
             if (!(await this.$refs.form.validate()).valid) {
@@ -115,10 +126,10 @@ export default {
             })
             console.log(error)
             if (error !== "ok") {
-                this.showSnackBar(4000, "Cannot add server due to an error", "Dismiss")
+                this.showSnackBar(4000, this.$t("pages.Servers.sb_cannot_add_server"), this.$t("snackbar.dismiss"))
                 return;
             }
-            this.showSnackBar(4000, "Server Added", "Dismiss")
+            this.showSnackBar(4000, this.$t("pages.Servers.sb_server_added"), this.$t("snackbar.dismiss"))
             this.getServerList()
             this.dialog = false
         },
@@ -129,15 +140,26 @@ export default {
             })
             console.log(error)
             if (error !== "ok") {
-                this.showSnackBar(4000, "Cannot delete server due to an error", "Dismiss")
+                this.showSnackBar(4000, this.$t("pages.Servers.sb_cannot_delete_server"), this.$t("snackbar.dismiss"))
                 return;
             }
-            this.showSnackBar(4000, "Server Deleted", "Dismiss")
+            this.showSnackBar(4000, this.$t("pages.Servers.sb_server_deleted"), this.$t("snackbar.dismiss"))
             this.getServerList()
+        },
+        d(waibibabu) { // short for dialogGetTranslation
+            return this.$t("pages.Servers.dialog.errors." + waibibabu)
+        },
+        dbg() {
+            console.log(this.isServerListEmpty, this.server_list)
         }
     },
     mounted() {
         this.getServerList()
+    },
+    computed: {
+        isServerListEmpty() {
+            return this.server_list.length === 0
+        }
     }
 }
 </script>

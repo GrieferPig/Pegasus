@@ -4,11 +4,11 @@
             <v-app-bar-nav-icon @click="isDrawerOpened = !isDrawerOpened"></v-app-bar-nav-icon>
         </template>
         <v-toolbar-title data-tauri-drag-region>
-            {{ currentPageName }}
+            {{ $t(currentPageName) }}
         </v-toolbar-title>
-        <v-btn icon="mdi-dots-vertical"></v-btn>
+        <v-btn icon="mdi-dots-vertical" @click="ops"></v-btn>
     </v-app-bar>
-    <NavDrawer :is-drawer-opened="isDrawerOpened"/>
+    <NavDrawer :is-drawer-opened="isDrawerOpened" />
 </template>
 
 <script>
@@ -30,6 +30,11 @@ export default {
         },
         currentPageName() {
             return this.$store.state.currentPageTitle
+        }
+    },
+    methods: {
+        ops() {
+            console.log(this.$store.state.currentPageTitle)
         }
     }
 }
