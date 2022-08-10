@@ -9,7 +9,6 @@ fn create_temp_dir() -> bool {
     temp_path.push("downloads");
     match fs::create_dir_all(temp_path) {
         Ok(()) => true,
-        Err(_) => false
+        Err(_) => false,
     }
 }
-

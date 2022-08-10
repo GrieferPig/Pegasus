@@ -1,5 +1,5 @@
 use std::fs;
-// Plot twist: Turns out flutter is impersonating Posey haha discord x Posey i like the ship
+// Plot twist: Turns out Posey is fluttershy in disguise haha discord x Posey i like the ship
 // but seriously no if that's the case thank you IDW for ruining my day
 
 // UGHHH it's my sis Pipp messing with my computer again sorry everypony you know her she livestreams EVERYTHING

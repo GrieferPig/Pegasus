@@ -22,6 +22,8 @@ tauri = { version = "1.0.4", features = ["dialog-message", "dialog-open", "fs-al
 fastnbt = "2"
 flate2 = "1.0"
 
+sys-info = "0.9"
+
 [features]
 # by default Tauri runs in production mode
 # when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL

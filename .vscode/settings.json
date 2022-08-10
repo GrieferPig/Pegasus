@@ -1,0 +1,6 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "javascript.suggest.paths": false,
+    "typescript.suggest.paths": false,
+    "rust-analyzer.debug.engine": "vadimcn.vscode-lldb",
+}
