@@ -17,7 +17,7 @@
             </v-list-item>
         </div>
         <v-label v-if="error">{{ $t("pages.Servers.errors.error") }} <br />{{
-                $t("pages.Servers.title.errors.reasons." + error_reason)
+                $t("pages.Servers.errors.reasons." + error_reason)
         }}</v-label>
         <v-label v-if="isServerListEmpty">{{ $t("pages.Servers.empty_server_list_1") }}<br />{{
                 $t("pages.Servers.empty_server_list_2")
@@ -99,6 +99,7 @@ export default {
             } else if (list[0].ip === "error") {
                 this.error = true;
                 this.error_reason = list[0].name;
+                this.server_list = list
                 return null;
             }
             this.error = false;

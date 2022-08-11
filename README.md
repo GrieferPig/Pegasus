@@ -59,6 +59,11 @@ LOL I have no guarantee for this project.
 For alternatives(and the inspiration of this project), how about
 Andy-K-Sparklight’s [Alicorn Launcher](https://github.com/Andy-K-Sparklight/Alicorn).
 
+## Build Steps
+
+*WIP*
+Extra deps on Debian/*buntu w/ desktop: libsoup2.4-dev libgtk-3-dev libwebkit2gtk-4.0-dev
+
 ## Sounds cool! I'm in.
 
 Thanks! Others' contributions are definitely and extremely helpful for this project. Feel free to post issues / pull
