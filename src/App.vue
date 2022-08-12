@@ -27,6 +27,7 @@ import ServerListPage from "./components/ServerListPage.vue";
 import AppBar from "./components/misc/AppBar.vue"
 import Footer from "./components/misc/Footer.vue"
 import GlobalSnackBar from "./components/misc/GlobalSnackBar.vue";
+import { test } from './utils/test';
 
 export default {
     name: 'App',
@@ -68,6 +69,9 @@ export default {
             },
             deep: true
         }
+    },
+    mounted() {
+        test()
     }
 }
 </script>

@@ -5,11 +5,11 @@
 #![feature(fs_try_exists)]
 #![feature(try_blocks)]
 
+mod game_client;
+mod game_manifest;
 mod grabber;
 mod server_dat_rw;
 mod setting_mgr;
-mod game_client;
-mod game_manifest;
 
 fn main() {
     setting_mgr::create_def_conf();
