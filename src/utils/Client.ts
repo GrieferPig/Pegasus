@@ -39,6 +39,36 @@ export class Client {
                 case "${auth_player_name}":
                     break;
 
+                case "${version_name}":
+                    break;
+
+                case "${game_directory}":
+                    break;
+
+                case "${assets_root}":
+                    break;
+
+                case "${assets_index_name}":
+                    break;
+
+                case "${auth_uuid}":
+                    break;
+
+                case "${auth_access_token}":
+                    break;
+
+                case "${clientid}":
+                    break;
+
+                case "${auth_xuid}":
+                    break;
+
+                case "${user_type}":
+                    break;
+
+                case "${version_type}":
+                    break;
+
                 default:
                     break;
             }
