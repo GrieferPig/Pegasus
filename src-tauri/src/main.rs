@@ -4,6 +4,7 @@
 )]
 #![feature(fs_try_exists)]
 #![feature(try_blocks)]
+#![feature(async_closure)]
 
 mod game_client;
 mod game_manifest;

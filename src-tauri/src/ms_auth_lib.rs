@@ -1,13 +1,14 @@
 // TODO: refactor
 
-use anyhow::anyhow;
-use anyhow::Context;
 use rand::distributions::Alphanumeric;
 use rand::Rng;
 use reqwest::Url;
 use serde::Deserialize;
 use std::borrow::Cow;
+use std::future::Future;
 use std::sync::mpsc;
+use std::thread;
+use std::time::Duration;
 use warp::Filter;
 
 #[derive(Deserialize)]
@@ -73,7 +74,8 @@ impl AuthenticateWithXboxLiveOrXsts {
             .xui
             .into_iter()
             .next()
-            .context("no xui found")?
+            // .context("no xui found")
+            .unwrap()
             .user_hash;
 
         Ok((token, user_hash))
@@ -86,20 +88,6 @@ pub struct Profile {
     pub name: String,
 }
 
-async fn receive_query(port: u16) -> Query {
-    let (sender, receiver) = mpsc::sync_channel(1);
-    let route = warp::get()
-        .and(warp::filters::query::query())
-        .map(move |query: Query| {
-            sender.send(query).expect("failed to send query");
-            "Successfully received query"
-        });
-
-    tokio::task::spawn(warp::serve(route).run(([127, 0, 0, 1], port)));
-
-    receiver.recv().expect("channel has hung up")
-}
-
 fn random_string() -> String {
     rand::thread_rng()
         .sample_iter(Alphanumeric)
@@ -108,13 +96,14 @@ fn random_string() -> String {
         .collect()
 }
 
-async fn verify_unwrapped_(
+#[tauri::command]
+pub async fn verify(
     client_id: String,
     client_secret: String,
     redirect_uri: Url,
     port: u16,
-) -> anyhow::Result<AuthProfile> {
-    // generates verification link
+) -> (String, String, String, u8) {
+    // generates verifaication link
     let state = random_string();
     let url = format!(
         "https://login.live.com/oauth20_authorize.srf\
@@ -136,15 +125,26 @@ async fn verify_unwrapped_(
     println!("opened link");
 
     // wait for auth komplete
-    let query = receive_query(port).await;
+    let (sender, receiver) = mpsc::sync_channel(1);
+    let route = warp::get()
+        .and(warp::filters::query::query())
+        .map(move |query: Query| {
+            sender.send(query).expect("failed to send query");
+            "Authenticated successfully. You may close the browser now."
+        });
+
+    println!("b4");
+    tokio::task::spawn(warp::serve(route).run(([127, 0, 0, 1], port)));
+    tokio::task::spawn(async {}); // magic code, do not delete
+    println!("after");
+
+    let query = receiver.recv().expect("channel has hung up");
+    println!("recv done");
 
     // verify state to make sure its the same as our req
-    anyhow::ensure!(
-        query.state == state,
-        "state mismatch: got state '{}' from query, but expected state was '{}'",
-        query.state,
-        state
-    );
+    if query.state != state {
+        return ("".to_string(), "".to_string(), "".to_string(), 2);
+    }
 
     // generate a http client for token req
     let client = reqwest::Client::new();
@@ -160,9 +160,11 @@ async fn verify_unwrapped_(
             ("redirect_uri", redirect_uri.to_string()),
         ])
         .send()
-        .await?
+        .await
+        .unwrap()
         .json()
-        .await?;
+        .await
+        .unwrap();
     let access_token = access_token.access_token;
     println!("got token");
 
@@ -180,10 +182,12 @@ async fn verify_unwrapped_(
         .post("https://user.auth.xboxlive.com/user/authenticate")
         .json(&json)
         .send()
-        .await?
+        .await
+        .unwrap()
         .json()
-        .await?;
-    let (token, user_hash) = auth_with_xbl.extract_essential_information()?;
+        .await
+        .unwrap();
+    let (token, user_hash) = auth_with_xbl.extract_essential_information().unwrap();
     println!("authed with xbox");
 
     // getting Xbox Live Security Token (XSTS)
@@ -199,10 +203,12 @@ async fn verify_unwrapped_(
         .post("https://xsts.auth.xboxlive.com/xsts/authorize")
         .json(&json)
         .send()
-        .await?
+        .await
+        .unwrap()
         .json()
-        .await?;
-    let (token, _) = auth_with_xsts.extract_essential_information()?;
+        .await
+        .unwrap();
+    let (token, _) = auth_with_xsts.extract_essential_information().unwrap();
     println!("auth with xst");
 
     // auth with minecraft
@@ -212,9 +218,11 @@ async fn verify_unwrapped_(
             "identityToken": format!("XBL3.0 x={};{}", user_hash, token)
         }))
         .send()
-        .await?
+        .await
+        .unwrap()
         .json()
-        .await?;
+        .await
+        .unwrap();
     let access_token = access_token.access_token;
     println!("auth with mc");
 
@@ -225,30 +233,18 @@ async fn verify_unwrapped_(
         .get("https://api.minecraftservices.com/entitlements/mcstore")
         .bearer_auth(&access_token)
         .send()
-        .await?
+        .await
+        .unwrap()
         .json()
-        .await?;
+        .await
+        .unwrap();
 
-    if (store.items.contains(&Item::PRODUCT_MINECRAFT)) {
-        return Ok(AuthProfile {
-            access_token: "".to_string(),
-            profile: Profile {
-                id: "".to_string(),
-                name: "".to_string(),
-            },
-            error_code: 1,
-        });
+    if !store.items.contains(&Item::PRODUCT_MINECRAFT) {
+        return ("".to_string(), "".to_string(), "".to_string(), 1);
     }
 
-    if (store.items.contains(&Item::GAME_MINECRAFT)) {
-        return Ok(AuthProfile {
-            access_token: "".to_string(),
-            profile: Profile {
-                id: "".to_string(),
-                name: "".to_string(),
-            },
-            error_code: 1,
-        });
+    if !store.items.contains(&Item::GAME_MINECRAFT) {
+        return ("".to_string(), "".to_string(), "".to_string(), 1);
     }
 
     println!("checked ownership");
@@ -259,39 +255,11 @@ async fn verify_unwrapped_(
         .get("https://api.minecraftservices.com/minecraft/profile")
         .bearer_auth(&access_token)
         .send()
-        .await?
+        .await
+        .unwrap()
         .json()
-        .await?;
+        .await
+        .unwrap();
 
-    Ok(AuthProfile {
-        access_token: access_token,
-        profile: profile,
-        error_code: 0,
-    })
-}
-
-pub struct AuthProfile {
-    access_token: String,
-    profile: Profile,
-    error_code: u8,
-}
-
-#[tauri::command]
-pub async fn verify(
-    client_id: String,
-    client_secret: String,
-    redirect_uri: Url,
-    port: u16,
-) -> (String, String, String, u8) {
-    let result = verify_unwrapped_(client_id, client_secret, redirect_uri, port).await;
-    println!("wrapper done");
-    match result {
-        Ok(profile) => (
-            profile.access_token,
-            profile.profile.id,
-            profile.profile.name,
-            profile.error_code,
-        ),
-        Err(_) => ("".to_string(), "".to_string(), "".to_string(), 2),
-    }
+    (access_token, profile.id, profile.name, 0)
 }

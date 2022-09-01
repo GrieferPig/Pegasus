@@ -7,7 +7,5 @@ export async function test() {
     // let cj = await cli.readClientJson()
     // console.log(cj);
     // console.log(await cli.concatGameArgs(cj))
-    console.log("b4")
-    console.log(await verify(), "GG")
-    console.log("returend")
+    console.log(await verify())
 }
