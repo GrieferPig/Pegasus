@@ -36,8 +36,8 @@ configuration panel.
 - Beautiful and overused UI using *Material Design*
 - Automatic JRE setup
 - Logs recording
-- i18n support (for later)
-- Bugs. Lots of bugs.
+- i18n support
+- Bugz. Lots of bugz.
 
 ## Forge/LiteLoader/Optifine Support?
 
@@ -51,7 +51,7 @@ Just kidding. Let’s talk about that later.
 
 So, duh.
 
-## Okay, sounds pretty good. Where's the download link?
+## Sounds good. Now where's the download link?
 
 Too bad there's none. Currently it’s a proof-of-concept. **Hopefully**, this launcher can finish in a feaw month, but
 LOL I have no guarantee for this project.
@@ -62,7 +62,7 @@ Andy-K-Sparklight’s [Alicorn Launcher](https://github.com/Andy-K-Sparklight/Al
 ## Build Steps
 
 *WIP*
-Extra deps on Debian/*buntu w/ desktop: libsoup2.4-dev libgtk-3-dev libwebkit2gtk-4.0-dev
+Extra deps on Debian/*buntu w/ gnome desktop: libsoup2.4-dev libgtk-3-dev libwebkit2gtk-4.0-dev
 
 ## Sounds cool! I'm in.
 
