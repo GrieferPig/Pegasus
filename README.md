@@ -29,15 +29,15 @@ configuration panel.
 
 ## Features?
 
-- Download and launch Minecraft (obviously)
-- Modpack creating, good for modded server admins
-- Multi-account support including Demo/Mojang/Microsoft/Authlib-inject accounts
-- Fast download
-- Beautiful and overused UI using *Material Design*
-- Automatic JRE setup
-- Logs recording
-- i18n support
-- Bugz. Lots of bugz.
+- [ ] Download and launch Minecraft (obviously)
+- [ ] Modpack creating, good for modded server admins
+- [ ] **WIP -** Multi-account support including Demo/Microsoft/Authlib-inject accounts
+- [ ] Fast download
+- [x] Beautiful and overused UI using *Material Design*
+- [ ] Automatic JRE setup
+- [ ] Logs recording
+- [x] i18n support
+- [x] Bugz. Lots of bugz.
 
 ## Forge/LiteLoader/Optifine Support?
 
@@ -81,7 +81,7 @@ requests if you find something that can improve.
 ***
 Licensed under Mozilla Public License Version 2.0.
 
-"Minecraft", "我的世界" and its logo are affiliates of Mojang AB.  
-"My Little Pony: Friendship is Magic" is affiliated with Hasbro.  
-Not Related to Mojang AB, Hasbro and/or other organizations.  
+"Minecraft", "我的世界" and its logo are affiliates of Mojang Studios.  
+"My Little Pony: Friendship is Magic", "My Little Pony: Make Your Mark" and their characters are affiliates of Hasbro, Inc.  
+Not Related to Mojang Studios, Hasbro, Inc. and/or other organizations.  
 Other trademarks belong to their owner.
