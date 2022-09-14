@@ -11,7 +11,7 @@
                 <!-- <v-btn @click="testModifyConf">test me</v-btn> -->
                 <Footer />
                 <GlobalSnackBar />
-                <v-btn @click='toggleLang'>toggle lang</v-btn>
+<!--                <v-btn @click='toggleLang'>toggle lang</v-btn>-->
             </v-main>
         </v-app>
     </div>
@@ -53,13 +53,13 @@ export default {
         },
     },
     methods: {
-        toggleLang() {
-            if (this.$i18n.locale === "zhHans") {
-                this.$i18n.locale = "en"
-                return;
-            }
-            this.$i18n.locale = "zhHans"
-        }
+        // toggleLang() {
+        //     if (this.$i18n.locale === "zhHans") {
+        //         this.$i18n.locale = "en"
+        //         return;
+        //     }
+        //     this.$i18n.locale = "zhHans"
+        // }
     },
     watch: {
         '$store.state.conf': {
@@ -71,6 +71,7 @@ export default {
         }
     },
     mounted() {
+        this.$i18n.locale = this.$store.state.langId    // read conf, change lang
         test()
     }
 }

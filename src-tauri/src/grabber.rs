@@ -3,7 +3,7 @@ use std::path::PathBuf;
 
 use tauri::api::path::data_dir;
 
-fn create_temp_dir() -> bool {
+fn _create_temp_dir() -> bool {
     let mut temp_path: PathBuf = data_dir().unwrap();
     temp_path.push(".pegasus");
     temp_path.push("downloads");

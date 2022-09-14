@@ -1,4 +1,10 @@
 export default {
+    lang: {
+        id: "en",
+        dispName: "English (English)",
+        icon: "",
+        available: true,
+    },
     pages: {
         Launch: {
             title: "Launch"

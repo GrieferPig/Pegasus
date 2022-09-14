@@ -1,9 +1,11 @@
-import { createStore, Store } from "vuex";
-import { writeConf } from '../utils/SettingMgr'
+import {createStore} from "vuex";
+import {writeConf} from '../utils/SettingMgr'
+import {findLangById} from "../i18n/lang";
 
 let last_timeout: NodeJS.Timeout;
 
 export function create(conf_value: SettingStructure.RootObject) {
+    let langId = conf_value.launcherSettings.lang
     return createStore({
         state() {
             return {
@@ -17,6 +19,9 @@ export function create(conf_value: SettingStructure.RootObject) {
                 snackbar_text: "",
                 snackbar_subtext: undefined,
                 snackbar_close_text: "Close",
+
+                langId: langId,
+                lang: findLangById(langId)
             }
         },
         mutations: {
@@ -61,7 +66,13 @@ export function create(conf_value: SettingStructure.RootObject) {
                 store.conf = conf
                 writeConf(conf)
                 // console.log("vuex: writeConf: Wrote")
-            }
+            },
+            changeLang(store, [langId, vueThis]) {
+                store.lang = findLangById(langId)
+                store.conf.launcherSettings.lang = langId
+                writeConf(store.conf)
+                vueThis.$i18n.locale = langId
+            },
         }
     })
 }

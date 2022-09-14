@@ -3,5 +3,10 @@
  */
 
 export default {
-
+    lang: {
+        id: "poEqt",
+        dispName: "Ponish (Ponish)",
+        icon: "",
+        available: false,
+    }
 };

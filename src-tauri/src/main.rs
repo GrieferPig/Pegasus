@@ -6,6 +6,8 @@
 #![feature(try_blocks)]
 #![feature(async_closure)]
 
+use tauri::Manager;
+
 mod game_client;
 mod game_manifest;
 mod grabber;
@@ -16,9 +18,8 @@ mod ms_auth_lib;
 
 fn main() {
     setting_mgr::create_def_conf();
-
     let context = tauri::generate_context!();
-    let app = tauri::Builder::default()
+    tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             server_dat_rw::read_server_list,
             server_dat_rw::add_server,
@@ -29,14 +30,4 @@ fn main() {
         ])
         .run(context)
         .expect("error while running tauri application");
-}
-
-pub fn open_new_window() {
-    // let window = tauri::WindowBuilder::new(
-    //     ,
-    //     "label",
-    //     tauri::WindowUrl::External("https://tauri.app/".parse().unwrap()),
-    // )
-    // .build()
-    // .unwrap();
 }

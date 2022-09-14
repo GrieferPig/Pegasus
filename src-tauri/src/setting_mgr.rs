@@ -32,7 +32,7 @@ pub fn create_def_conf() -> bool {
         launcher_settings: LauncherSettings {
             theme: String::from("default"),
             dark_mode: false,
-            lang: String::from("zh-cn"),
+            lang: String::from("zhHans"),
             download_mirror: String::from("mojang"),
         },
         accounts: Accounts {

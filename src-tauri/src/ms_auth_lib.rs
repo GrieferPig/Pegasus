@@ -5,10 +5,7 @@ use rand::Rng;
 use reqwest::Url;
 use serde::Deserialize;
 use std::borrow::Cow;
-use std::future::Future;
 use std::sync::mpsc;
-use std::thread;
-use std::time::Duration;
 use warp::Filter;
 
 #[derive(Deserialize)]

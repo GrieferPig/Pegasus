@@ -1,4 +1,10 @@
 export default {
+    lang: {
+        id: "zhHans",
+        dispName: "简体中文 (Chinese Simplified)",
+        icon: "",
+        available: true,
+    },
     pages: {
         Launch: {
             title: "启动"
