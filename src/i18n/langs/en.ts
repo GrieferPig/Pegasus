@@ -25,6 +25,7 @@ export default {
                 edit_server: "Edit Server",
                 add_new_server: "Add New Server",
                 action_add: "Add",
+                action_done: "Done",
                 action_close: "Close",
                 name: "Name",
                 server_ip: "Server IP",
@@ -50,6 +51,8 @@ export default {
             sb_cannot_add_server: "Cannot add server due to an error",
             sb_server_deleted: "Server Deleted",
             sb_cannot_delete_server: "Cannot delete server due to an error",
+            sb_server_edited: "Server Edited",
+            sb_cannot_edit_server: "Cannot edit server due to an error",
         },
         Versions: {
             title: "Versions"

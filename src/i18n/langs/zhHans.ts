@@ -25,6 +25,7 @@ export default {
                 edit_server: "编辑服务器",
                 add_new_server: "添加服务器",
                 action_add: "添加",
+                action_done: "完成",
                 action_close: "关闭",
                 name: "名称",
                 server_ip: "服务器IP",
@@ -50,6 +51,8 @@ export default {
             sb_cannot_add_server: "由于一个错误，无法添加服务器",
             sb_server_deleted: "已删除服务器",
             sb_cannot_delete_server: "由于一个错误，无法删除服务器",
+            sb_server_edited: "已编辑服务器",
+            sb_cannot_edit_server: "由于一个错误，无法编辑服务器",
         },
         Versions: {
             title: "游戏版本"

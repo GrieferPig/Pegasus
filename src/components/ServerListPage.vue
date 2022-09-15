@@ -1,27 +1,29 @@
 <template>
     <v-btn-group id="op-btn-group">
-        <v-btn @click="openAddServerDialog" class="op-btns" :disabled="error" icon="mdi-plus" size="large" />
-        <v-btn @click="getServerList" class="op-btns" icon="mdi-refresh" size="large" />
+        <v-btn :disabled="error" class="op-btns" icon="mdi-plus" size="large" @click="openAddServerDialog"/>
+        <v-btn class="op-btns" icon="mdi-refresh" size="large" @click="getServerList"/>
     </v-btn-group>
     <v-list subheader two-line>
         <v-list-subheader inset="">{{ $t('pages.Servers.title') }}</v-list-subheader>
         <div :v-if="!isServerListEmpty">
-            <v-list-item v-if="!error" v-for="(server, index) in server_list" :key="server.name" :subtitle="server.ip"
-                :title="server.name">
+            <v-list-item v-for="(server, index) in server_list" v-if="!error" :key="server.name" :subtitle="server.ip"
+                         :title="server.name">
                 <template v-slot=append>
                     <v-btn-group>
                         <v-btn icon="mdi-delete" @click="deleteServer(index)"></v-btn>
-                        <v-btn icon="mdi-pencil"></v-btn>
+                        <v-btn icon="mdi-pencil" @click="openEditServerDialog(index)"></v-btn>
                     </v-btn-group>
                 </template>
             </v-list-item>
         </div>
-        <v-label v-if="error">{{ $t("pages.Servers.errors.error") }} <br />{{
+        <v-label v-if="error">{{ $t("pages.Servers.errors.error") }} <br/>{{
                 $t("pages.Servers.errors.reasons." + error_reason)
-        }}</v-label>
-        <v-label v-if="isServerListEmpty">{{ $t("pages.Servers.empty_server_list_1") }}<br />{{
+            }}
+        </v-label>
+        <v-label v-if="isServerListEmpty">{{ $t("pages.Servers.empty_server_list_1") }}<br/>{{
                 $t("pages.Servers.empty_server_list_2")
-        }}</v-label>
+            }}
+        </v-label>
     </v-list>
 
     <v-dialog v-model="dialog" persistent>
@@ -30,27 +32,28 @@
             <v-card-title v-else>{{ $t("pages.Servers.dialog.add_new_server") }}</v-card-title>
             <v-card-item>
                 <v-form ref="form" v-model="valid" lazy-validation style="width: 250px">
-                    <v-text-field v-model="name" :label="$t('pages.Servers.dialog.name')" required variant="underlined"
-                        :rules="nameRules">
+                    <v-text-field v-model="name" :label="$t('pages.Servers.dialog.name')" :rules="nameRules" required
+                                  variant="underlined">
                     </v-text-field>
-                    <v-text-field v-model="server_ip" :label="$t('pages.Servers.dialog.server_ip')" required
-                        variant="underlined" :rules="serverIpRules"></v-text-field>
-                    <v-text-field v-model="server_port" :label="$t('pages.Servers.dialog.port')" required
-                        variant="underlined" :rules="serverPortRules">
+                    <v-text-field v-model="server_ip" :label="$t('pages.Servers.dialog.server_ip')" :rules="serverIpRules"
+                                  required variant="underlined"></v-text-field>
+                    <v-text-field v-model="server_port" :label="$t('pages.Servers.dialog.port')" :rules="serverPortRules"
+                                  required variant="underlined">
                     </v-text-field>
                 </v-form>
             </v-card-item>
             <v-card-actions>
                 <v-btn color="primary" @click="dialog = false">{{ $t("pages.Servers.dialog.action_close") }}</v-btn>
-                <v-btn color="primary" @click="addServer">{{ $t(form_action) }}</v-btn>
+                <v-btn color="primary" v-if="!dialog_edit" @click="addServer">{{ $t(form_action) }}</v-btn>
+                <v-btn color="primary" v-else @click="editServer">{{ $t(form_action) }}</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
-    <v-btn @click="dbg">is empty</v-btn>
+<!--    <v-btn @click="dbg">is empty</v-btn>-->
 </template>
 
 <script>
-import { invoke } from "@tauri-apps/api/tauri";
+import {invoke} from "@tauri-apps/api/tauri";
 
 export default {
     name: "ServerListPage",
@@ -66,6 +69,8 @@ export default {
             name: "",
             server_ip: "",
             server_port: 25565,
+
+            edit_index: 0,
 
             valid: false,
             nameRules: [
@@ -93,7 +98,6 @@ export default {
                 path: this.conf.globalGameSettings.selectedGameDir + "/servers.dat"
             })
             console.log(list)
-            // console.log(list) 
             if (list.length === 0) {
                 // uh what should i do here
             } else if (list[0].ip === "error") {
@@ -113,6 +117,17 @@ export default {
             this.server_port = 25565
             this.form_action = "pages.Servers.dialog.action_add"
         },
+        openEditServerDialog(index) {
+            let _server = this.server_list[index].ip.split(":")
+            console.log(_server)
+            this.name = this.server_list[index].name;
+            this.server_ip = _server[0];
+            this.dialog = true;
+            this.dialog_edit = true;
+            this.server_port = _server[1]
+            this.form_action = "pages.Servers.dialog.action_done"
+            this.edit_index = index;
+        },
         async addServer() {
             if (!(await this.$refs.form.validate()).valid) {
                 return;
@@ -131,7 +146,38 @@ export default {
                 return;
             }
             this.showSnackBar(4000, this.$t("pages.Servers.sb_server_added"), this.$t("snackbar.dismiss"))
-            this.getServerList()
+            await this.getServerList()
+            this.dialog = false
+        },
+        async editServer() {
+            if (!(await this.$refs.form.validate()).valid) {
+                return;
+            }
+            let error = await invoke('del_server', {
+                path: this.conf.globalGameSettings.selectedGameDir + "/servers.dat",
+                index: this.edit_index
+            })
+            console.log(error)
+            if (error !== "ok") {
+                this.showSnackBar(4000, this.$t("pages.Servers.sb_cannot_edit_server"), this.$t("snackbar.dismiss"))
+                return;
+            }
+            await this.getServerList()
+            let error1 = await invoke('add_server', {
+                path: this.conf.globalGameSettings.selectedGameDir + "/servers.dat",
+                data: {
+                    icon: null,
+                    ip: this.server_ip + ":" + this.server_port,
+                    name: this.name
+                }
+            })
+            console.log(error1)
+            if (error1 !== "ok") {
+                this.showSnackBar(4000, this.$t("pages.Servers.sb_cannot_edit_server"), this.$t("snackbar.dismiss"))
+                return;
+            }
+            this.showSnackBar(4000, this.$t("pages.Servers.sb_server_edited"), this.$t("snackbar.dismiss"))
+            await this.getServerList()
             this.dialog = false
         },
         async deleteServer(index) {
@@ -145,7 +191,7 @@ export default {
                 return;
             }
             this.showSnackBar(4000, this.$t("pages.Servers.sb_server_deleted"), this.$t("snackbar.dismiss"))
-            this.getServerList()
+            await this.getServerList()
         },
         d(waibibabu) { // short for dialogGetTranslation
             return this.$t("pages.Servers.dialog.errors." + waibibabu)
@@ -154,8 +200,8 @@ export default {
             console.log(this.isServerListEmpty, this.server_list)
         }
     },
-    mounted() {
-        this.getServerList()
+    async mounted() {
+        await this.getServerList()
     },
     computed: {
         isServerListEmpty() {

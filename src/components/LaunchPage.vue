@@ -2,6 +2,8 @@
     <label v-if="gotAccount">Account: {{ name }}</label>
     <label v-else>Gathering account info</label>
     <label v-if="error">Error: {{ errorNo }}</label>
+
+  <v-btn @click="login">login</v-btn>
 </template>
 
 <script>
@@ -17,15 +19,17 @@ export default {
             name: "",
         }
     },
-    async mounted() {
+    methods: {
+      async login(){
         let _res = await verify();
         if (_res[3] !== 0) {
-            this.error = true;
-            this.errorNo = _res[3]
+          this.error = true;
+          this.errorNo = _res[3]
         } else {
-            this.gotAccount = true;
-            this.name = _res[2]
+          this.gotAccount = true;
+          this.name = _res[2]
         }
+      }
     }
 }
 </script>
