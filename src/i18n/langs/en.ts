@@ -63,5 +63,13 @@ export default {
     },
     snackbar: {
         dismiss: "Dismiss"
+    },
+    theme: {
+        default: "Default n' Classic",
+        fluffyYellow: "Fluffy Yellow",
+        lightningWhite: "Lightning White",
+        muffinheadGray: "Muffinhead Gray",
+        popPurple: "Pop Purple",
+        rockinRainbow: "Rockin' Rainbow"
     }
 };

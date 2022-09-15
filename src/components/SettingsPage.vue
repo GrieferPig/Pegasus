@@ -11,6 +11,14 @@
   return-object
   single-line
   ></v-select>
+
+  <v-select
+      v-model="selectTheme"
+      :items="allThemes"
+      item-title="name"
+      item-value="id"
+      single-line
+  ></v-select>
 </template>
 
 <script>
@@ -18,16 +26,30 @@ import {message, open} from '@tauri-apps/api/dialog';
 import {appDir} from '@tauri-apps/api/path';
 
 import {findLangById, getAllLocales} from "../i18n/lang";
+import {themeList} from "../plugins/themes";
+
+function transformThemeTitleIntoLocalizedMessage(vueThis) {
+  let list = JSON.parse(JSON.stringify(themeList)) // deep clone
+  for (let item in list) {
+    list[item].name = vueThis.$t(list[item].name)
+  }
+  return list
+}
 
 export default {
   name: "SettingsPage",
   data() {
     let currentLang = findLangById(this.conf.launcherSettings.lang)
+    let currentTheme = this.conf.launcherSettings.theme
     const allLocales = getAllLocales()
-    console.log(currentLang, allLocales)
+    let allThemes = transformThemeTitleIntoLocalizedMessage(this)
+    // console.log(currentLang, allLocales)
     return {
       allLocales: allLocales,
-      selectLocale: {id: currentLang.lang.id, dispName: currentLang.lang.dispName, available: currentLang.lang.available}
+      selectLocale: {id: currentLang.lang.id, dispName: currentLang.lang.dispName, available: currentLang.lang.available},
+
+      allThemes: allThemes,
+      selectTheme: [currentTheme]
     }
   },
   computed: {
@@ -39,6 +61,10 @@ export default {
     selectLocale(n, o) {
       console.log(n)
       this.$store.commit("changeLang", [n.id, this])
+      this.allThemes = transformThemeTitleIntoLocalizedMessage(this)
+    },
+    selectTheme(n,o) {
+      this.conf.launcherSettings.theme = n
     }
   },
   methods: {

@@ -63,5 +63,13 @@ export default {
     },
     snackbar: {
         dismiss: "关闭"
+    },
+    theme: {
+        default: "经典灰",
+        fluffyYellow: "毛绒黄",
+        lightningWhite: "闪电白",
+        muffinheadGray: "小灰灰",
+        popPurple: "流行紫",
+        rockinRainbow: "彩虹摇滚"
     }
 };

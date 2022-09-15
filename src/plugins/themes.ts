@@ -1,34 +1,79 @@
-import { ThemeDefinition } from 'vuetify'
-export const defaultLightTheme: ThemeDefinition = {
-    dark: false,
-    colors: {
-        primary: '#0097A7',
-        secondary: '#009688',
-        accent: '#FFFFFF',
-        error: '#e91e63',
-        warning: '#ff9800',
-        info: '#607d8b',
-        success: '#8bc34a',
-        background: '#ffffff',
-        surface: '#ffffff',
-    },
-    variables: {}
+import * as d from "./themes/default";
+import * as fy from "./themes/fluffy_yellow";
+import * as lw from "./themes/lightning_white";
+import * as mg from "./themes/muffinhead_gray";
+import * as pp from "./themes/pop_purple";
+import * as rr from "./themes/rockin_rainbow";
+
+const defaultLightTheme = d.defaultLightTheme
+const defaultDarkTheme = d.defaultDarkTheme
+
+const fluffyYellowLightTheme = fy.fluffyYellowLightTheme
+const fluffyYellowDarkTheme = fy.fluffyYellowDarkTheme
+
+const lightningWhiteLightTheme = lw.lightningWhiteLightTheme
+const lightningWhiteDarkTheme = lw.lightningWhiteDarkTheme
+
+const muffinheadGrayLightTheme = mg.muffinheadGrayLightTheme
+const muffinheadGrayDarkTheme = mg.muffinheadGrayDarkTheme
+
+const popPurpleLightTheme = pp.popPurpleLightTheme
+const popPurpleDarkTheme = pp.popPurpleDarkTheme
+
+const rockinRainbowLightTheme = rr.rockinRainbowLightTheme
+const rockinRainbowDarkTheme = rr.rockinRainbowDarkTheme
+
+
+// TODO: Finish theme design
+export {
+    defaultLightTheme,
+    defaultDarkTheme,
+
+    fluffyYellowLightTheme,
+    fluffyYellowDarkTheme,
+
+    lightningWhiteLightTheme,
+    lightningWhiteDarkTheme,
+
+    muffinheadGrayLightTheme,
+    muffinheadGrayDarkTheme,
+
+    popPurpleLightTheme,
+    popPurpleDarkTheme,
+
+    rockinRainbowLightTheme,
+    rockinRainbowDarkTheme,
 }
 
-export const defaultDarkTheme: ThemeDefinition = {
-    dark: true,
-    colors: {
-        primary: '#303F9F',
-        secondary: '#00796B',
-        accent: '#512DA8',
-        error: '#e91e63',
-        warning: '#ff9800',
-        info: '#607d8b',
-        success: '#8bc34a',
-        background: '#000000',
-        surface: '#000000',
+export const themeList = [
+    {
+        id: d.THEME_ID,
+        name: "theme."+d.THEME_ID,
+        pri: d.THEME_PRI_COLOR
     },
-    variables: {}
-}
-
-export const THEMES_LOCALIZED: String[][] = [['default', 'Default Theme']];
+    {
+        id: fy.THEME_ID,
+        name: "theme."+fy.THEME_ID,
+        pri: fy.THEME_PRI_COLOR
+    },
+    {
+        id: lw.THEME_ID,
+        name: "theme."+lw.THEME_ID,
+        pri: lw.THEME_PRI_COLOR
+    },
+    {
+        id: mg.THEME_ID,
+        name: "theme."+mg.THEME_ID,
+        pri: mg.THEME_PRI_COLOR
+    },
+    {
+        id: pp.THEME_ID,
+        name: "theme."+pp.THEME_ID,
+        pri: pp.THEME_PRI_COLOR
+    },
+    {
+        id: rr.THEME_ID,
+        name: "theme."+rr.THEME_ID,
+        pri: rr.THEME_PRI_COLOR
+    },
+]

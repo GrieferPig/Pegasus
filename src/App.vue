@@ -43,6 +43,7 @@ export default {
     },
     computed: {
         theme() {
+          console.log("theme(): ",this.$store.state.conf.launcherSettings.darkMode, this.$store.state.conf.launcherSettings.theme)
             if (this.$store.state.conf.launcherSettings.darkMode) {
                 return this.$store.state.conf.launcherSettings.theme + "DarkTheme"
             }

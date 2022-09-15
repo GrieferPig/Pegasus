@@ -1,7 +1,6 @@
 import en from './langs/en'
 import zhHans from './langs/zhHans'
 import poEqt from "./langs/poEqt";
-import {readConf} from "../utils/SettingMgr";
 
 const messages = {
     en: en,
@@ -18,7 +17,9 @@ export default {
 export function getAllLocales(){
     let array = [];
     for (let lang in messages) {
-        array.push(messages[lang].lang)
+        if (messages[lang].lang.available){
+            array.push(messages[lang].lang)
+        }
     }
     return array;
 }
