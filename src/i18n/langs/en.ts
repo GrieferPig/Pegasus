@@ -17,7 +17,8 @@ export default {
                     cannot_open_server_dat: "Cannot open server.dat",
                     cannot_read_server_dat: "Cannot read server.dat",
                     cannot_decode_server_dat: "Cannot decode server.dat",
-                }
+                },
+                server_dat_not_found: "server.dat not found. Do you have a version of Minecraft installed?",
             },
             empty_server_list_1: "No servers added yet.",
             empty_server_list_2: "Click + below to add one.",
@@ -65,7 +66,9 @@ export default {
         },
     },
     snackbar: {
-        dismiss: "Dismiss"
+        dismiss: "Dismiss",
+        game_folder_not_selected: "Game folder is not selected",
+        changed_game_folder: "Changed game folder",
     },
     theme: {
         default: "Default n' Classic",

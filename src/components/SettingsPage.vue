@@ -75,9 +75,10 @@ export default {
         defaultPath: await appDir(),
       });
       if (selected === null) {
-        await message('Game Folder Not Selected', {title: 'Pegasus', type: 'error'});
+        this.showSnackBar(5000, this.$t("snackbar.game_folder_not_selected"), this.$t("snackbar.dismiss"));
       } else {
         this.conf.globalGameSettings.selectedGameDir = selected
+          this.showSnackBar(5000, this.$t("snackbar.changed_game_folder"), this.$t("snackbar.dismiss"));
       }
       console.log(this.conf.globalGameSettings.selectedGameDir)
     }

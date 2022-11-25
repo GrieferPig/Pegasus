@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Default Dark+",
+    "workbench.colorTheme": "Visual Studio Dark - C++",
     "javascript.suggest.paths": false,
     "typescript.suggest.paths": false,
     "rust-analyzer.debug.engine": "vadimcn.vscode-lldb",

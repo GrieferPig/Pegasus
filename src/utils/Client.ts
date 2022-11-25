@@ -22,6 +22,9 @@ export class Client {
                 await fs.readTextFile(await this.getClientJson())
             ) as unknown as ClientJson.RootObject
     }
+    async validate(): Promise<boolean> {
+        return !!(await this.readClientJson()).id;
+    }
 
     // here's where the juice comes in
     async concatGameArgs(gg: ClientJson.RootObject): Promise<string[]> {
@@ -78,6 +81,13 @@ export class Client {
 
     async concatLegacyArgs() {
         //TODO: Impl
+    }
+}
+
+export async function scanFolder(fpath: string){
+    const folderList = await fs.readDir(fpath)
+    for (const folder in folderList){
+        console.log(folderList[folder])
     }
 }
 

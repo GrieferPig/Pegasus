@@ -20,6 +20,8 @@
                 $t("pages.Servers.errors.reasons." + error_reason)
             }}
         </v-label>
+        <v-label v-if="server_dat_not_found">{{ $t("pages.Servers.errors.server_dat_not_found") }}
+        </v-label>
         <v-label v-if="isServerListEmpty">{{ $t("pages.Servers.empty_server_list_1") }}<br/>{{
                 $t("pages.Servers.empty_server_list_2")
             }}
@@ -30,8 +32,9 @@
         <v-card>
             <v-card-title v-if="dialog_edit">{{ $t("pages.Servers.dialog.edit_server") }}</v-card-title>
             <v-card-title v-else>{{ $t("pages.Servers.dialog.add_new_server") }}</v-card-title>
-            <v-card-item>
-                <v-form ref="form" v-model="valid" lazy-validation style="width: 250px">
+            <v-card-item style="padding-top: 0;">
+                <VSpacer style="height: 20px"/>
+                <v-form ref="form" v-model="valid" lazy-validation style="width: 250px;margin-top: 10px">
                     <v-text-field v-model="name" :label="$t('pages.Servers.dialog.name')" :rules="nameRules" required
                                   variant="underlined">
                     </v-text-field>
@@ -62,6 +65,8 @@ export default {
             error: false,
             error_reason: "",
             server_list: [],
+
+            server_dat_not_found: false,
 
             dialog: false,
             dialog_edit: false,
@@ -104,6 +109,11 @@ export default {
                 this.error = true;
                 this.error_reason = list[0].name;
                 this.server_list = list
+                if (this.error_reason === "cannot_open_server_dat"){
+                    this.error = false;
+                    this.server_dat_not_found = true;
+                    this.server_list = []
+                }
                 return null;
             }
             this.error = false;
@@ -205,7 +215,8 @@ export default {
     },
     computed: {
         isServerListEmpty() {
-            return this.server_list.length === 0
+
+            return (!this.server_dat_not_found) && (this.server_list.length === 0)
         }
     }
 }

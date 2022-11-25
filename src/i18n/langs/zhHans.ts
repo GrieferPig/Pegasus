@@ -17,7 +17,8 @@ export default {
                     cannot_open_server_dat: "无法打开服务器列表文件",
                     cannot_read_server_dat: "无法读取务器列表文件",
                     cannot_decode_server_dat: "无法解析务器列表文件",
-                }
+                },
+                server_dat_not_found: " 找不到server.dat文件。是否安装了Minecraft？",
             },
             empty_server_list_1: "没有已添加的服务器。",
             empty_server_list_2: "点击下方加号添加。",
@@ -65,10 +66,12 @@ export default {
         },
     },
     snackbar: {
-        dismiss: "关闭"
+        dismiss: "关闭",
+        game_folder_not_selected: "没有选择游戏文件夹",
+        changed_game_folder: "已更改游戏文件夹",
     },
     theme: {
-        default: "经典灰",
+        default: "经典青",
         fluffyYellow: "毛绒黄",
         lightningWhite: "闪电白",
         muffinheadGray: "小灰灰",
